@@ -1,0 +1,163 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaFinal from '../components/CtaFinal.astro';
+import Icon from '../components/Icon.astro';
+import { site, whatsappUrl } from '../data/site';
+import { consorciosDestaque } from '../data/consorcios';
+
+const canais = [
+  { icone: 'whatsapp', titulo: 'WhatsApp', valor: site.telefone, href: whatsappUrl, nota: 'Resposta em até 5 minutos, em horário comercial.' },
+  { icone: 'phone', titulo: 'Telefone', valor: site.telefone, href: site.telefoneLink, nota: 'Segunda a sexta, das 9h às 18h.' },
+  { icone: 'mail', titulo: 'E-mail', valor: site.email, href: `mailto:${site.email}`, nota: 'Resposta em até 1 dia útil.' },
+];
+---
+
+<BaseLayout
+  title={`Contato — Fale com um Especialista | ${site.nome}`}
+  description={`Fale com a ${site.nome}. Simulação gratuita de consórcio, comparativo entre 37 administradoras e atendimento em todo o Brasil.`}
+>
+  <PageHero
+    label="Contato"
+    titulo="Fale com um especialista em consórcio"
+    texto="Conte o seu objetivo e a faixa de parcela que cabe no seu orçamento. Devolvemos um comparativo real entre administradoras — sem compromisso."
+    imagem="/images/consultation.webp"
+    cta="Chamar no WhatsApp"
+    trilha={[{ rotulo: 'Início', href: '/' }, { rotulo: 'Contato' }]}
+  />
+
+  <section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16">
+      <div>
+        <p class="section-label">Canais de Atendimento</p>
+        <h2 class="font-heading font-bold text-3xl text-primary-900 mb-8">Escolha como prefere falar com a gente</h2>
+        <ul class="space-y-px bg-primary-200 list-none p-0">
+          {
+            canais.map((c) => (
+              <li class="bg-white">
+                <a
+                  href={c.href}
+                  target={c.icone === 'whatsapp' ? '_blank' : undefined}
+                  rel={c.icone === 'whatsapp' ? 'noopener noreferrer' : undefined}
+                  class="group flex gap-5 items-start p-6 transition-colors duration-300 hover:bg-primary-50"
+                >
+                  <span class="w-12 h-12 border border-primary-200 flex items-center justify-center shrink-0 transition-all duration-300 group-hover:bg-accent group-hover:border-accent">
+                    <Icon name={c.icone} class="w-5 h-5 text-accent transition-colors duration-300 group-hover:text-white" />
+                  </span>
+                  <span>
+                    <span class="block font-heading font-bold text-lg text-primary-900">{c.titulo}</span>
+                    <span class="block text-accent-700 text-sm font-semibold">{c.valor}</span>
+                    <span class="block text-primary-600 text-xs mt-1">{c.nota}</span>
+                  </span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+
+        <div class="mt-10 bg-primary-50 border border-primary-100 p-6">
+          <h3 class="font-heading font-bold text-primary-900 mb-3 flex items-center gap-2">
+            <Icon name="lock" class="w-4 h-4 text-accent" />Seus dados estão protegidos
+          </h3>
+          <p class="text-primary-700 text-sm leading-relaxed">
+            Tratamos suas informações conforme a LGPD. Usamos seus dados apenas para preparar a simulação — não vendemos
+            cadastros e não fazemos ligações insistentes.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <div class="bg-primary-900 p-8 lg:p-10">
+          <h2 class="font-heading font-bold text-2xl text-white mb-2">Peça sua simulação gratuita</h2>
+          <p class="text-primary-100 text-sm mb-8">
+            Preencha os campos e um especialista retorna com o comparativo entre administradoras.
+          </p>
+          <form
+            id="form-simulacao"
+            class="space-y-5"
+            method="post"
+            action={whatsappUrl}
+            aria-describedby="form-nota"
+          >
+            <div>
+              <label for="nome" class="block text-xs uppercase tracking-wider font-semibold text-primary-100 mb-2"
+                >Nome completo</label
+              >
+              <input
+                id="nome"
+                name="nome"
+                type="text"
+                required
+                autocomplete="name"
+                class="w-full bg-white/10 border border-white/20 text-white placeholder-white/40 px-4 py-3 text-sm focus:outline-none focus:border-accent"
+                placeholder="Seu nome"
+              />
+            </div>
+            <div>
+              <label for="telefone" class="block text-xs uppercase tracking-wider font-semibold text-primary-100 mb-2"
+                >WhatsApp</label
+              >
+              <input
+                id="telefone"
+                name="telefone"
+                type="tel"
+                required
+                autocomplete="tel"
+                class="w-full bg-white/10 border border-white/20 text-white placeholder-white/40 px-4 py-3 text-sm focus:outline-none focus:border-accent"
+                placeholder="(00) 00000-0000"
+              />
+            </div>
+            <div>
+              <label for="modalidade" class="block text-xs uppercase tracking-wider font-semibold text-primary-100 mb-2"
+                >O que você quer conquistar</label
+              >
+              <select
+                id="modalidade"
+                name="modalidade"
+                class="w-full bg-white/10 border border-white/20 text-white px-4 py-3 text-sm focus:outline-none focus:border-accent"
+              >
+                {consorciosDestaque.map((c) => <option class="text-primary-900" value={c.nome}>{c.nome}</option>)}
+              </select>
+            </div>
+            <div>
+              <label for="valor" class="block text-xs uppercase tracking-wider font-semibold text-primary-100 mb-2"
+                >Valor aproximado do crédito</label
+              >
+              <input
+                id="valor"
+                name="valor"
+                type="text"
+                inputmode="numeric"
+                class="w-full bg-white/10 border border-white/20 text-white placeholder-white/40 px-4 py-3 text-sm focus:outline-none focus:border-accent"
+                placeholder="Ex.: R$ 200.000"
+              />
+            </div>
+            <button type="submit" class="btn-primary w-full">Enviar e Simular Grátis</button>
+            <p id="form-nota" class="text-white/50 text-xs text-center">
+              Ao enviar, você é direcionado ao WhatsApp com os dados preenchidos.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaFinal titulo="Prefere resolver agora?" texto="Chame no WhatsApp e receba seu comparativo em minutos." cta="Falar no WhatsApp" />
+</BaseLayout>
+
+<script define:vars={{ whatsappUrl }}>
+  const form = document.getElementById('form-simulacao');
+  form?.addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    const d = new FormData(form);
+    const texto = [
+      'Olá! Quero uma simulação de consórcio.',
+      `Nome: ${d.get('nome') || ''}`,
+      `WhatsApp: ${d.get('telefone') || ''}`,
+      `Modalidade: ${d.get('modalidade') || ''}`,
+      `Crédito desejado: ${d.get('valor') || ''}`,
+    ].join('\n');
+    const base = whatsappUrl.split('&text=')[0];
+    window.open(`${base}&text=${encodeURIComponent(texto)}`, '_blank', 'noopener');
+  });
+</script>

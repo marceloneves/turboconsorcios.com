@@ -1,0 +1,169 @@
+---
+import Icon from './Icon.astro';
+import { site, whatsappUrl } from '../data/site';
+import { consorciosDestaque } from '../data/consorcios';
+import { estadosPorRegiao } from '../data/estados';
+
+const links = [
+  { href: '/', rotulo: 'Início' },
+  { href: '/sobre', rotulo: 'Sobre Nós' },
+  { href: '/blog', rotulo: 'Blog' },
+  { href: '/contato', rotulo: 'Contato' },
+];
+const path = Astro.url.pathname;
+---
+
+<div class="bg-accent-700 text-white text-center py-1.5 px-2 sm:py-2 sm:px-4">
+  <p class="text-[10px] sm:text-xs font-bold uppercase tracking-[1px] sm:tracking-[2px] whitespace-nowrap">
+    Maior Portal de Consórcios do Brasil
+  </p>
+</div>
+
+<header class="bg-white sticky top-0 z-50 border-b border-primary-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+    <a class="flex items-center gap-3.5" aria-label={`${site.nome} — Página Inicial`} href="/">
+      <span class="w-11 h-11 bg-accent flex items-center justify-center shrink-0">
+        <Icon name="zap" class="w-6 h-6 text-white" />
+      </span>
+      <span class="hidden sm:flex flex-col leading-none">
+        <span class="font-heading font-extrabold text-xl tracking-[3px] text-primary-900 uppercase">{site.marca}</span>
+        <span class="font-heading font-normal text-xs tracking-[2px] text-accent mt-0.5">{site.submarca}</span>
+      </span>
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-6" aria-label="Principal">
+      <a class="text-sm font-medium text-primary-900 hover:text-accent-600 transition-colors" href="/">Início</a>
+      <a class="text-sm font-medium text-primary-900 hover:text-accent-600 transition-colors" href="/sobre">Sobre Nós</a>
+
+      <div class="relative group">
+        <button
+          class="text-sm font-medium text-primary-900 hover:text-accent-600 transition-colors flex items-center gap-1 py-2"
+          aria-haspopup="true"
+        >
+          Consórcios<Icon name="chevronDown" class="w-4 h-4" />
+        </button>
+        <div
+          class="absolute left-0 top-full w-72 bg-white border border-primary-100 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"
+        >
+          <ul class="py-2">
+            {
+              consorciosDestaque.map((c) => (
+                <li>
+                  <a
+                    class="block px-5 py-2.5 text-sm text-primary-800 hover:bg-primary-50 hover:text-accent-600 transition-colors"
+                    href={`/${c.slug}`}
+                  >
+                    {c.nome}
+                  </a>
+                </li>
+              ))
+            }
+            <li class="border-t border-primary-100 mt-2 pt-2">
+              <a
+                class="block px-5 py-2.5 text-xs uppercase tracking-wider font-semibold text-accent-700 hover:bg-primary-50"
+                href="/mapa-do-site">Ver todas as modalidades →</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="relative group">
+        <button
+          class="text-sm font-medium text-primary-900 hover:text-accent-600 transition-colors flex items-center gap-1 py-2"
+          aria-haspopup="true"
+        >
+          Localidades<Icon name="chevronDown" class="w-4 h-4" />
+        </button>
+        <div
+          class="absolute left-1/2 -translate-x-1/2 top-full w-[46rem] bg-white border border-primary-100 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 p-6"
+        >
+          <div class="grid grid-cols-5 gap-5">
+            {
+              estadosPorRegiao.map((g) => (
+                <div>
+                  <p class="text-[11px] uppercase tracking-[0.15em] font-semibold text-accent-700 mb-3">{g.regiao}</p>
+                  <ul class="space-y-1.5">
+                    {g.estados.map((e) => (
+                      <li>
+                        <a
+                          class="text-sm text-primary-800 hover:text-accent-600 transition-colors"
+                          href={`/consorcio-em-${e.slug}`}
+                        >
+                          {e.nome}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <a class="text-sm font-medium text-primary-900 hover:text-accent-600 transition-colors" href="/blog">Blog</a>
+      <a class="text-sm font-medium text-primary-900 hover:text-accent-600 transition-colors" href="/contato">Contato</a>
+    </nav>
+
+    <div class="flex items-center gap-4">
+      <a href={site.telefoneLink} class="hidden md:flex items-center gap-2 text-sm font-semibold text-primary-900">
+        <Icon name="phone" class="w-4 h-4 text-accent" />{site.telefone}
+      </a>
+      <a class="btn-primary hidden lg:inline-block" href={whatsappUrl} target="_blank" rel="noopener noreferrer"
+        >Simule Grátis</a
+      >
+      <button id="menu-toggle" class="lg:hidden text-primary-900 p-1" aria-label="Abrir menu" aria-expanded="false">
+        <Icon name="menu" class="w-7 h-7" />
+      </button>
+    </div>
+  </div>
+
+  <div id="menu-mobile" class="hidden lg:hidden border-t border-primary-100 bg-white">
+    <ul class="px-6 py-4 space-y-1">
+      {
+        links.map((l) => (
+          <li>
+            <a
+              class:list={[
+                'block py-2.5 text-sm font-medium transition-colors',
+                path === l.href ? 'text-accent-600' : 'text-primary-900 hover:text-accent-600',
+              ]}
+              href={l.href}
+            >
+              {l.rotulo}
+            </a>
+          </li>
+        ))
+      }
+      <li class="pt-2 border-t border-primary-100">
+        <p class="text-[11px] uppercase tracking-[0.15em] font-semibold text-accent-700 py-2">Consórcios</p>
+        <ul>
+          {
+            consorciosDestaque.map((c) => (
+              <li>
+                <a class="block py-2 text-sm text-primary-800 hover:text-accent-600" href={`/${c.slug}`}>
+                  {c.nome}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </li>
+      <li class="pt-3">
+        <a class="btn-primary w-full text-center" href={whatsappUrl} target="_blank" rel="noopener noreferrer"
+          >Simule Grátis</a
+        >
+      </li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('menu-mobile');
+  toggle?.addEventListener('click', () => {
+    const aberto = menu?.classList.toggle('hidden') === false;
+    toggle.setAttribute('aria-expanded', String(aberto));
+  });
+</script>

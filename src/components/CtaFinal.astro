@@ -1,0 +1,44 @@
+---
+import Icon from './Icon.astro';
+import { whatsappUrl } from '../data/site';
+
+interface Props {
+  titulo?: string;
+  texto?: string;
+  cta?: string;
+}
+const {
+  titulo = 'Seu Sonho Está Mais Perto Do Que Você Imagina',
+  texto = 'Casa, carro, moto, caminhão, máquina agrícola. Sem juros, sem entrada, presente em todo o Brasil.',
+  cta = 'Quero Minha Simulação Gratuita',
+} = Astro.props;
+
+const selos = ['Sem compromisso', 'Sigilo total', 'Atendimento em todo o Brasil'];
+---
+
+<section class="relative py-24 md:py-32 bg-primary-900 overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-br from-primary-950 via-primary-900 to-primary-800" aria-hidden="true">
+  </div>
+  <div class="relative max-w-4xl mx-auto px-6 text-center">
+    <p class="section-label-light">Comece Agora</p>
+    <h2 class="font-heading font-bold text-3xl md:text-5xl text-white mb-6 leading-tight">{titulo}</h2>
+    <p class="text-white/90 text-lg mb-4 max-w-2xl mx-auto">{texto}</p>
+    <p class="text-white/70 mb-12 max-w-2xl mx-auto">
+      Milhares de brasileiros já transformaram planejamento em patrimônio. A única coisa que separa você do próximo passo
+      é uma simulação gratuita.
+    </p>
+    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="btn-primary">
+      <span class="flex items-center gap-2">{cta}<Icon name="arrowRight" class="w-4 h-4" /></span>
+    </a>
+    <ul class="flex flex-wrap justify-center gap-x-8 gap-y-3 mt-12 list-none p-0">
+      {
+        selos.map((s) => (
+          <li class="flex items-center gap-2 text-white/80 text-sm">
+            <Icon name="check" class="w-4 h-4 text-accent-400" />
+            {s}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

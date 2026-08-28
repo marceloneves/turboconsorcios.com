@@ -1,0 +1,83 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaFinal from '../../components/CtaFinal.astro';
+import { site } from '../../data/site';
+
+const posts = (await getCollection('blog')).sort((a, b) => b.data.data.valueOf() - a.data.data.valueOf());
+const [destaque, ...resto] = posts;
+const categorias = [...new Set(posts.map((p) => p.data.categoria))];
+const fmt = (d: Date) => d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+---
+
+<BaseLayout
+  title={`Blog — Guias e Análises Sobre Consórcio | ${site.nome}`}
+  description="Conteúdo sobre taxas, carta de crédito, contemplação, lances e custos do consórcio. Informação clara para decidir antes de contratar."
+>
+  <PageHero
+    label="Informativo"
+    titulo="Entenda o consórcio antes de assinar"
+    texto="Guias sobre taxa de administração, fundo de reserva, carta de crédito, lances e contemplação — escritos para quem quer comparar de verdade."
+    imagem="/images/finance.webp"
+    cta="Falar com um Especialista"
+    trilha={[{ rotulo: 'Início', href: '/' }, { rotulo: 'Blog' }]}
+  />
+
+  {
+    destaque && (
+      <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+          <p class="section-label">Em destaque</p>
+          <a href={`/blog/${destaque.id}`} class="group grid lg:grid-cols-2 gap-10 items-center">
+            <img src={destaque.data.imagem} alt="" class="w-full h-[380px] object-cover" loading="lazy" />
+            <div>
+              <p class="text-xs uppercase tracking-[0.2em] font-semibold text-accent-700 mb-3">
+                {destaque.data.categoria} · {destaque.data.leitura} min de leitura
+              </p>
+              <h2 class="font-heading font-bold text-3xl text-primary-900 mb-4 leading-snug group-hover:text-accent-600 transition-colors">
+                {destaque.data.titulo}
+              </h2>
+              <p class="text-primary-700 leading-relaxed mb-6">{destaque.data.resumo}</p>
+              <p class="text-accent-700 text-sm font-semibold uppercase tracking-wider">Ler artigo →</p>
+            </div>
+          </a>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="py-20 bg-primary-50">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-wrap gap-3 mb-12">
+        {
+          categorias.map((c) => (
+            <span class="text-xs uppercase tracking-wider font-semibold text-primary-700 border border-primary-200 bg-white px-4 py-2">
+              {c}
+            </span>
+          ))
+        }
+      </div>
+      <ul class="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-primary-200 list-none p-0 m-0">
+        {
+          resto.map((p) => (
+            <li class="bg-white">
+              <a href={`/blog/${p.id}`} class="group block p-8 h-full">
+                <p class="text-xs uppercase tracking-[0.2em] font-semibold text-accent-700 mb-3">
+                  {p.data.categoria} · {p.data.leitura} min
+                </p>
+                <h3 class="font-heading font-bold text-xl text-primary-900 mb-3 leading-snug group-hover:text-accent-600 transition-colors">
+                  {p.data.titulo}
+                </h3>
+                <p class="text-primary-700 text-sm leading-relaxed mb-4">{p.data.resumo}</p>
+                <p class="text-primary-500 text-xs">{fmt(p.data.data)}</p>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <CtaFinal titulo="Leu, entendeu e quer comparar na prática?" texto="Peça a simulação gratuita e receba o comparativo entre 37 administradoras." />
+</BaseLayout>

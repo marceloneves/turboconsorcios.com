@@ -1,0 +1,60 @@
+---
+import Icon from './Icon.astro';
+import { whatsappUrl } from '../data/site';
+
+interface Props {
+  label: string;
+  titulo: string;
+  texto: string;
+  imagem?: string;
+  cta?: string;
+  trilha?: Array<{ rotulo: string; href?: string }>;
+}
+const {
+  label,
+  titulo,
+  texto,
+  imagem = '/images/hero.webp',
+  cta = 'Simular Gratuitamente',
+  trilha = [],
+} = Astro.props;
+---
+
+<section class="relative flex items-center min-h-[60vh]">
+  <div class="absolute inset-0" aria-hidden="true">
+    <img src={imagem} alt="" class="w-full h-full object-cover" loading="eager" fetchpriority="high" />
+    <div class="absolute inset-0 bg-gradient-to-r from-primary-950/95 via-primary-900/85 to-primary-900/60"></div>
+  </div>
+  <div class="relative max-w-7xl mx-auto px-6 py-20 md:py-28 w-full">
+    {
+      trilha.length > 0 && (
+        <nav aria-label="Trilha de navegação" class="mb-6">
+          <ol class="flex flex-wrap items-center gap-2 text-xs text-white/60 list-none p-0 m-0">
+            {trilha.map((t, i) => (
+              <li class="flex items-center gap-2">
+                {i > 0 && <span aria-hidden="true">/</span>}
+                {t.href ? (
+                  <a href={t.href} class="hover:text-accent transition-colors">
+                    {t.rotulo}
+                  </a>
+                ) : (
+                  <span class="text-white/90">{t.rotulo}</span>
+                )}
+              </li>
+            ))}
+          </ol>
+        </nav>
+      )
+    }
+    <div class="max-w-3xl">
+      <p class="text-accent text-sm font-semibold uppercase tracking-[0.25em] mb-6">{label}</p>
+      <h1 class="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.08] mb-6 text-white">
+        {titulo}
+      </h1>
+      <p class="text-lg text-white/90 mb-10 max-w-2xl leading-relaxed">{texto}</p>
+      <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="btn-primary">
+        <span class="flex items-center gap-2">{cta}<Icon name="arrowRight" class="w-4 h-4" /></span>
+      </a>
+    </div>
+  </div>
+</section>

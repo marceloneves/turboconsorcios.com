@@ -1,0 +1,191 @@
+@import "tailwindcss";
+
+@theme {
+  /* Paleta navy — identidade Turbo Consórcios */
+  --color-primary-50: #e6eef5;
+  --color-primary-100: #c2d6e8;
+  --color-primary-200: #8fb3d4;
+  --color-primary-300: #5f96c6;
+  --color-primary-400: #3d7ab8;
+  --color-primary-500: #2b6099;
+  --color-primary-600: #22557f;
+  --color-primary-700: #1a4b7a;
+  --color-primary-800: #133a5e;
+  --color-primary-900: #102a43;
+  --color-primary-950: #0a1929;
+
+  /* Acento laranja */
+  --color-accent: #ea580c;
+  --color-accent-400: #fb923c;
+  --color-accent-500: #f97316;
+  --color-accent-600: #c2410c;
+  --color-accent-700: #9a3412;
+
+  --font-heading: Poppins, ui-sans-serif, system-ui, sans-serif;
+  --font-body: Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-sans: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: var(--font-body);
+    color: var(--color-primary-900);
+    background-color: #fff;
+  }
+}
+
+@utility btn-primary {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  background-color: var(--color-accent-600);
+  padding: 1rem 2rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #fff;
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    background-color: var(--color-accent-700);
+  }
+}
+
+@utility btn-outline {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  border-width: 2px;
+  border-color: #fff;
+  padding: 1rem 2rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #fff;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    background-color: #fff;
+    color: var(--color-primary-900);
+  }
+}
+
+@utility section-label {
+  margin-bottom: 1rem;
+  display: block;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-accent-700);
+}
+
+@utility section-label-light {
+  margin-bottom: 1rem;
+  display: block;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-accent-400);
+}
+
+/* Tipografia dos artigos do blog */
+.prose-consorcio {
+  color: var(--color-primary-700);
+  line-height: 1.75;
+}
+.prose-consorcio > * + * {
+  margin-top: 1.25rem;
+}
+.prose-consorcio h2 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.75rem;
+  line-height: 1.25;
+  color: var(--color-primary-900);
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+.prose-consorcio h3 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--color-primary-900);
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+.prose-consorcio strong {
+  color: var(--color-primary-900);
+  font-weight: 600;
+}
+.prose-consorcio a {
+  color: var(--color-accent-700);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose-consorcio a:hover {
+  color: var(--color-accent);
+}
+.prose-consorcio ul,
+.prose-consorcio ol {
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.prose-consorcio ul {
+  list-style: none;
+  padding-left: 0;
+}
+.prose-consorcio ul > li {
+  position: relative;
+  padding-left: 1.5rem;
+}
+.prose-consorcio ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 0.4rem;
+  height: 0.4rem;
+  background-color: var(--color-accent);
+}
+.prose-consorcio ol {
+  list-style: decimal;
+}
+.prose-consorcio blockquote {
+  border-left: 2px solid var(--color-accent);
+  padding-left: 1.5rem;
+  font-style: italic;
+  color: var(--color-primary-800);
+}
+.prose-consorcio table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  display: block;
+  overflow-x: auto;
+}
+.prose-consorcio th,
+.prose-consorcio td {
+  border: 1px solid var(--color-primary-100);
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+.prose-consorcio th {
+  background-color: var(--color-primary-50);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--color-primary-900);
+  white-space: nowrap;
+}

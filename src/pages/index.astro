@@ -1,0 +1,698 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import CtaFinal from '../components/CtaFinal.astro';
+import { site, whatsappUrl, numeros } from '../data/site';
+import { consorciosDestaque } from '../data/consorcios';
+import { estadosPorRegiao } from '../data/estados';
+import { depoimentos } from '../data/depoimentos';
+import { faq } from '../data/faq';
+
+const diferenciais = [
+  {
+    icone: 'shield',
+    titulo: 'Regulamentado pelo Banco Central',
+    texto:
+      'Todas as 37 administradoras parceiras são autorizadas e fiscalizadas pelo Bacen, garantindo segurança jurídica total.',
+  },
+  {
+    icone: 'zap',
+    titulo: 'Zero Juros Bancários',
+    texto:
+      'Você paga apenas a taxa de administração diluída no prazo. Economia real de 30% a 50% comparado ao financiamento.',
+  },
+  {
+    icone: 'users',
+    titulo: '50.000+ Clientes Ativos',
+    texto: 'A maior rede independente de consórcios do Brasil. Imóveis, veículos, motos, caminhões, máquinas e serviços.',
+  },
+  {
+    icone: 'globe',
+    titulo: '5.570 Cidades Atendidas',
+    texto: 'De Norte a Sul, do litoral ao interior. Atendimento 100% digital ou presencial, onde você estiver.',
+  },
+];
+
+const erros = [
+  'Não comparar taxas de administração entre administradoras',
+  'Escolher uma parcela acima da sua capacidade de pagamento',
+  'Não verificar se a administradora é autorizada pelo Banco Central',
+  'Ignorar o fundo de reserva e o seguro do grupo',
+  'Não entender as regras de lance e contemplação',
+  'Comprar cota de terceiros sem verificar pendências',
+];
+
+const vantagens = [
+  'Zero juros bancários, apenas taxa de administração',
+  'Poder de compra à vista com a carta de crédito',
+  'Parcelas até 50% menores que financiamento',
+  'Sem entrada obrigatória para iniciar',
+  'Possibilidade de usar FGTS (imóveis)',
+  'Regulamentado e fiscalizado pelo Banco Central',
+  'Carta de crédito com correção anual pelo INCC/IPCA',
+  'Possibilidade de dar lance para antecipar contemplação',
+];
+
+const passos = [
+  {
+    icone: 'clipboard',
+    titulo: 'Simulação Gratuita',
+    texto: 'Preencha seus dados e receba opções personalizadas de planos com as melhores administradoras do mercado.',
+  },
+  {
+    icone: 'scale',
+    titulo: 'Escolha do Plano',
+    texto: 'Compare cartas de crédito, parcelas, prazos e taxas. Nosso time ajuda você a encontrar o plano ideal.',
+  },
+  {
+    icone: 'handshake',
+    titulo: 'Adesão ao Grupo',
+    texto: 'Assine o contrato e comece a pagar. Você já pode ser contemplado desde a primeira assembleia.',
+  },
+  {
+    icone: 'award',
+    titulo: 'Contemplação',
+    texto: 'Seja contemplado por sorteio ou lance. Com a carta de crédito, compre seu bem com poder de compra à vista.',
+  },
+];
+
+const guias = [
+  {
+    tag: 'Imóveis',
+    titulo: 'Consórcio de Imóveis: O Caminho Mais Econômico para a Casa Própria',
+    texto:
+      'O consórcio imobiliário permite adquirir casas, apartamentos, terrenos, imóveis comerciais, chácaras e fazendas sem pagar juros bancários. Com cartas de crédito de R$ 80 mil a mais de R$ 1,5 milhão, é possível usar o FGTS como lance para antecipar a contemplação. A economia comparada ao financiamento pode chegar a 50% do valor total.',
+    valor: 'R$ 80 mil',
+    complemento: 'a R$ 1,5 milhão em cartas de crédito',
+    cta: 'Simular Consórcio de Imóvel',
+    href: '/consorcio-de-imoveis',
+  },
+  {
+    tag: 'Veículos',
+    titulo: 'Consórcio de Veículos: Carro Novo ou Seminovo Sem Juros',
+    texto:
+      'O consórcio automotivo oferece cartas de crédito de R$ 30 mil a R$ 350 mil para aquisição de veículos zero ou seminovos de qualquer marca. A carta de crédito funciona como pagamento à vista, permitindo negociar descontos que não existem no financiamento. Parcelas acessíveis e prazos de até 80 meses.',
+    valor: 'R$ 30 mil',
+    complemento: 'a R$ 350 mil em cartas de crédito',
+    cta: 'Simular Consórcio de Carro',
+    href: '/consorcio-de-automoveis',
+  },
+  {
+    tag: 'Agronegócio',
+    titulo: 'Consórcio de Caminhões e Máquinas: A Escolha do Produtor e Transportador',
+    texto:
+      'Para autônomos, transportadoras e produtores rurais, o consórcio é a forma mais viável de renovar frota ou adquirir equipamentos. Sem juros que comprometem a operação, com parcelas previsíveis e prazos que respeitam a sazonalidade do negócio. Cartas de crédito de R$ 80 mil a R$ 2 milhões.',
+    valor: 'R$ 80 mil',
+    complemento: 'a R$ 2 milhões em cartas de crédito',
+    cta: 'Simular Consórcio Agrícola',
+    href: '/consorcio-de-maquinas-agricolas',
+  },
+  {
+    tag: 'Serviços',
+    titulo: 'Consórcio de Serviços: A Carta Mais Versátil do Mercado',
+    texto:
+      'A carta de crédito de serviços pode ser utilizada para energia solar, reformas, viagens, educação, cirurgias, festas e eventos. Com valores de R$ 15 mil a R$ 300 mil, é uma ferramenta de planejamento financeiro para qualquer objetivo que não envolva a compra de um bem físico.',
+    valor: 'R$ 15 mil',
+    complemento: 'a R$ 300 mil em cartas de crédito',
+    cta: 'Simular Consórcio de Serviços',
+    href: '/consorcio-de-servicos',
+  },
+];
+
+const incluido = [
+  {
+    icone: 'fileSearch',
+    titulo: 'Análise Completa do Seu Perfil',
+    texto:
+      'Avaliamos sua capacidade financeira, objetivos e prazo desejado para recomendar o melhor tipo de consórcio e faixa de crédito.',
+  },
+  {
+    icone: 'scale',
+    titulo: 'Comparativo Entre Administradoras',
+    texto:
+      'Comparamos taxas, prazos e condições de até 37 administradoras para encontrar a melhor opção para o seu caso específico.',
+  },
+  {
+    icone: 'route',
+    titulo: 'Mapa dos Próximos Passos',
+    texto: 'Você recebe um plano claro com etapas, prazos e expectativas. Sem surpresas, sem letras miúdas.',
+  },
+  {
+    icone: 'lock',
+    titulo: 'Sigilo Total Garantido',
+    texto:
+      'Seus dados são protegidos conforme a LGPD. A simulação é gratuita, sem compromisso e totalmente confidencial.',
+  },
+];
+
+const caminhos = [
+  {
+    titulo: 'Você contrata conosco',
+    texto: 'Se gostar das opções, nós cuidamos de toda a adesão e acompanhamos você até a contemplação.',
+  },
+  {
+    titulo: 'Você compara no mercado',
+    texto: 'Use nossas opções como referência para comparar com qualquer outra empresa. Transparência total.',
+  },
+  {
+    titulo: 'Você decide esperar',
+    texto: 'Sem compromisso. Guarde a simulação e volte quando estiver pronto. Sem ligações insistentes.',
+  },
+];
+
+const avatares = [
+  { letra: 'C', cor: '#4a6fa5' },
+  { letra: 'F', cor: '#6b8f3c' },
+  { letra: 'R', cor: '#c07840' },
+  { letra: 'J', cor: '#7b5ea7' },
+  { letra: 'M', cor: '#3a8a8a' },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.pergunta,
+    acceptedAnswer: { '@type': 'Answer', text: f.resposta },
+  })),
+};
+---
+
+<BaseLayout
+  title="Consórcio Sem Juros e Sem Entrada. Simule Grátis Agora | Turbo Consórcios"
+  description="Consórcio de imóveis, veículos, motos, caminhões, máquinas agrícolas e serviços. Sem juros bancários, sem entrada obrigatória. 37 administradoras parceiras em todo o Brasil."
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(jsonLd)} />
+
+  <!-- Hero -->
+  <section class="relative min-h-[90vh] flex items-center">
+    <div class="absolute inset-0" aria-hidden="true">
+      <img
+        src="/images/hero.webp"
+        srcset="/images/hero-750.webp 750w, /images/hero-1200.webp 1200w, /images/hero.webp 1880w"
+        sizes="100vw"
+        alt=""
+        class="w-full h-full object-cover"
+        width="1880"
+        height="1255"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-primary-950/95 via-primary-900/85 to-primary-900/60"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-6 py-24 md:py-32 w-full">
+      <div class="max-w-3xl">
+        <p class="text-accent text-sm font-semibold uppercase tracking-[0.25em] mb-6">A Nº1 em Consórcios do Brasil</p>
+        <h1 class="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] mb-8 text-white">
+          Consórcio Sem Juros e Sem Entrada em Todo o Brasil
+        </h1>
+        <p class="text-lg md:text-xl text-white mb-12 max-w-2xl leading-relaxed">
+          Imóveis, veículos, motos, caminhões, máquinas agrícolas e serviços. Sem juros bancários, sem entrada
+          obrigatória. Presente em todas as 5.570 cidades brasileiras com 37 administradoras parceiras.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 mb-14">
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-primary text-center"
+            aria-label="Falar no WhatsApp"
+          >
+            <span class="flex items-center justify-center gap-2"
+              >Simule Seu Consórcio Gratuitamente<Icon name="arrowRight" class="w-4 h-4" /></span
+            >
+          </a>
+        </div>
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 border-t border-white/10 pt-8">
+          <div class="flex -space-x-3">
+            {
+              avatares.map((a, i) => (
+                <span
+                  class="w-10 h-10 rounded-full border-2 border-primary-900 flex items-center justify-center text-xs font-bold text-white"
+                  style={`background-color:${a.cor};z-index:${5 - i}`}
+                >
+                  {a.letra}
+                </span>
+              ))
+            }
+          </div>
+          <div>
+            <div class="flex gap-0.5 mb-1">
+              {[1, 2, 3, 4, 5].map(() => <Icon name="starFill" class="w-4 h-4 text-accent-400" />)}
+            </div>
+            <p class="text-white text-sm">Baseado em <strong class="text-white">500+ clientes</strong> satisfeitos</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Números -->
+  <section class="py-24 md:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="relative">
+          <img
+            src="/images/office.webp"
+            srcset="/images/office-750.webp 750w, /images/office-1200.webp 1200w, /images/office.webp 1880w"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            alt={`Escritório da ${site.nome} com equipe especializada em consórcios`}
+            class="w-full h-[500px] object-cover"
+            width="1880"
+            height="1253"
+            loading="lazy"
+          />
+          <div class="absolute -bottom-6 -right-6 bg-accent-600 text-white px-8 py-5 shadow-2xl hidden md:block">
+            <p class="font-heading text-4xl font-bold">50.000+</p>
+            <p class="text-sm text-white">Clientes Ativos em Todo o Brasil</p>
+          </div>
+          <div class="absolute top-6 left-6 bg-primary-950/90 text-white px-5 py-3">
+            <p class="text-xs uppercase tracking-[0.2em] font-semibold text-accent-400">Desde {site.desde}</p>
+            <p class="text-sm text-white">Transformando sonhos em patrimônio</p>
+          </div>
+        </div>
+        <div>
+          <p class="section-label">Números Que Falam</p>
+          <h2 class="font-heading font-bold text-3xl md:text-4xl text-primary-900 mb-4">
+            Por Que Mais de 50 Mil Brasileiros Confiam na Turbo
+          </h2>
+          <p class="text-primary-700 text-lg mb-12 leading-relaxed">
+            A maior rede independente de consórcios do Brasil. Comparamos planos de 37 administradoras para encontrar a
+            melhor opção para cada cliente.
+          </p>
+          <div class="grid grid-cols-2 gap-8">
+            {
+              numeros.map((n) => (
+                <figure class="border-l-2 border-accent pl-6">
+                  <p class="font-heading text-4xl md:text-5xl font-bold text-primary-900 mb-2">{n.valor}</p>
+                  <figcaption class="text-primary-600 text-sm uppercase tracking-wider font-medium">
+                    {n.rotulo}
+                  </figcaption>
+                </figure>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modalidades -->
+  <section class="py-24 md:py-32 bg-primary-50" id="consorcios">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="section-label">Nossos Consórcios</p>
+        <h2 class="font-heading font-bold text-3xl md:text-4xl text-primary-900 mb-4">
+          Consórcios Para Todos os Seus Objetivos
+        </h2>
+        <p class="text-primary-700 text-lg max-w-2xl mx-auto">
+          Do primeiro apartamento ao jato executivo. Encontre o plano ideal com parcelas que cabem no seu bolso.
+        </p>
+      </div>
+      <ul class="grid grid-cols-1 md:grid-cols-3 gap-px bg-primary-200 list-none p-0 m-0">
+        {
+          consorciosDestaque.map((c) => (
+            <li class="bg-white">
+              <a class="group block p-8 lg:p-10 h-full transition-colors duration-500 hover:bg-primary-900" href={`/${c.slug}`}>
+                <div class="flex items-start justify-between mb-6">
+                  <span class="w-14 h-14 border border-primary-200 flex items-center justify-center transition-all duration-500 group-hover:bg-accent group-hover:border-accent">
+                    <Icon name={c.icone} class="w-6 h-6 text-primary-900 transition-colors duration-500 group-hover:text-white" />
+                  </span>
+                  <Icon name="arrowUpRight" class="w-5 h-5 text-primary-200 transition-colors duration-500 group-hover:text-accent" />
+                </div>
+                <h3 class="font-heading text-2xl font-bold text-primary-900 mb-3 group-hover:text-white transition-colors duration-300">
+                  {c.nome}
+                </h3>
+                <p class="text-primary-700 text-sm leading-relaxed mb-6 group-hover:text-white transition-colors duration-300">
+                  {c.resumo}
+                </p>
+                <p class="text-accent-700 text-sm font-semibold uppercase tracking-wider group-hover:text-accent transition-colors duration-300">
+                  {c.cta} →
+                </p>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Diferenciais + erros + vantagens -->
+  <section class="py-24 md:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="section-label">Por Que a Turbo</p>
+        <h2 class="font-heading font-bold text-3xl md:text-4xl text-primary-900 mb-4">
+          O Que Você Perde Quando Não Compara Antes de Contratar
+        </h2>
+        <p class="text-primary-700 text-lg max-w-2xl mx-auto">
+          O consórcio é regulamentado pelo Banco Central e pela Lei 11.795/2008. Sem juros, com economia de até 50%
+          comparado ao financiamento.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-primary-200 mb-20">
+        {
+          diferenciais.map((d) => (
+            <div class="bg-white p-8">
+              <span class="w-12 h-12 bg-primary-50 border border-primary-200 flex items-center justify-center mb-5">
+                <Icon name={d.icone} class="w-5 h-5 text-accent" />
+              </span>
+              <h3 class="font-heading font-bold text-lg text-primary-900 mb-2">{d.titulo}</h3>
+              <p class="text-primary-700 text-sm leading-relaxed">{d.texto}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-10">
+        <div class="bg-primary-50 border border-primary-100 p-8 lg:p-10">
+          <h3 class="font-heading font-bold text-xl text-primary-900 mb-6 flex items-center gap-3">
+            <Icon name="alert" class="w-5 h-5 text-accent" />Erros Comuns ao Escolher um Consórcio
+          </h3>
+          <ol class="space-y-4 list-none p-0">
+            {
+              erros.map((e, i) => (
+                <li class="flex gap-4 items-start">
+                  <span class="shrink-0 w-7 h-7 bg-primary-900 text-white text-xs font-bold flex items-center justify-center">
+                    {i + 1}
+                  </span>
+                  <span class="text-primary-700 text-sm leading-relaxed">{e}</span>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+        <div class="bg-primary-900 p-8 lg:p-10">
+          <h3 class="font-heading font-bold text-xl text-white mb-6 flex items-center gap-3">
+            <Icon name="trendingUp" class="w-5 h-5 text-accent-400" />Vantagens do Consórcio Sem Juros
+          </h3>
+          <ul class="space-y-4 list-none p-0">
+            {
+              vantagens.map((v) => (
+                <li class="flex gap-3 items-start">
+                  <Icon name="check" class="w-4 h-4 text-accent-400 mt-1 shrink-0" />
+                  <span class="text-primary-100 text-sm leading-relaxed">{v}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      <div class="text-center mt-16">
+        <p class="font-heading font-bold text-2xl text-primary-900 mb-3">Você não precisa decidir nada agora.</p>
+        <p class="text-primary-700 mb-8 max-w-xl mx-auto">
+          Faça uma simulação gratuita, compare as opções e decida com calma. Sem pressão, sem compromisso.
+        </p>
+        <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="btn-primary">
+          <span class="flex items-center gap-2"
+            >Simule Seu Consórcio Gratuitamente<Icon name="arrowRight" class="w-4 h-4" /></span
+          >
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Como funciona -->
+  <section class="py-24 md:py-32 bg-primary-50" id="como-funciona">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <p class="section-label">Processo Simples</p>
+          <h2 class="font-heading font-bold text-3xl md:text-4xl text-primary-900 mb-4">
+            Do Primeiro Contato à Contemplação em 4 Passos
+          </h2>
+          <p class="text-primary-700 text-lg mb-12">
+            Sem burocracia, sem enrolação. Você conta o objetivo, nós encontramos o melhor plano.
+          </p>
+          <div class="space-y-8">
+            {
+              passos.map((p, i) => (
+                <div class="flex gap-6 items-start">
+                  <span class="shrink-0 w-16 h-16 bg-white border border-primary-200 flex items-center justify-center">
+                    <Icon name={p.icone} class="w-6 h-6 text-accent" />
+                  </span>
+                  <div>
+                    <span class="text-xs text-accent-700 uppercase tracking-wider font-semibold">
+                      Passo {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <h3 class="font-heading font-bold text-lg text-primary-900 mt-1 mb-2">{p.titulo}</h3>
+                    <p class="text-primary-700 text-sm leading-relaxed">{p.texto}</p>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+          <div class="mt-12">
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="btn-primary">
+              <span class="flex items-center gap-2">Começar Agora, É Grátis<Icon name="arrowRight" class="w-4 h-4" /></span>
+            </a>
+          </div>
+        </div>
+        <div class="relative">
+          <img
+            src="/images/consultation.webp"
+            srcset="/images/consultation-750.webp 750w, /images/consultation.webp 1880w"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            alt="Consultor especializado apresentando opções de consórcio para um cliente"
+            class="w-full h-[620px] object-cover"
+            loading="lazy"
+          />
+          <div class="absolute -bottom-6 -left-6 bg-white border border-primary-100 px-7 py-5 shadow-2xl hidden md:block">
+            <div class="flex gap-0.5 mb-2">
+              {[1, 2, 3, 4, 5].map(() => <Icon name="starFill" class="w-4 h-4 text-accent" />)}
+            </div>
+            <p class="text-primary-900 text-sm font-semibold">500+ clientes satisfeitos</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guia por modalidade -->
+  <section class="py-24 md:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="section-label">Guia de Consórcios</p>
+        <h2 class="font-heading font-bold text-3xl md:text-4xl text-primary-900 mb-4">
+          Entenda Cada Tipo de Consórcio Antes de Decidir
+        </h2>
+        <p class="text-primary-700 text-lg max-w-2xl mx-auto">
+          Informação é a melhor ferramenta para tomar uma decisão inteligente. Conheça as particularidades de cada
+          modalidade.
+        </p>
+      </div>
+      <div class="space-y-px bg-primary-200">
+        {
+          guias.map((g, i) => (
+            <article class="bg-white p-8 lg:p-12">
+              <div class:list={['grid lg:grid-cols-3 gap-10 items-center', i % 2 === 1 && 'lg:[&>*:first-child]:order-2']}>
+                <div class="lg:col-span-2">
+                  <p class="text-xs uppercase tracking-[0.2em] font-semibold text-accent-700 mb-3">{g.tag}</p>
+                  <h3 class="font-heading font-bold text-2xl text-primary-900 mb-4 leading-snug">{g.titulo}</h3>
+                  <p class="text-primary-700 leading-relaxed mb-6">{g.texto}</p>
+                  <a
+                    href={g.href}
+                    class="text-accent-700 text-sm font-semibold uppercase tracking-wider hover:text-accent transition-colors"
+                  >
+                    {g.cta} →
+                  </a>
+                </div>
+                <div class="border-l-2 border-accent pl-6">
+                  <p class="font-heading text-3xl md:text-4xl font-bold text-primary-900 mb-2">{g.valor}</p>
+                  <p class="text-primary-600 text-sm">{g.complemento}</p>
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+      <p class="text-primary-600 text-xs mt-10 max-w-3xl">
+        * O conteúdo acima é informativo e não substitui a orientação de um consultor de consórcios. Cada caso deve ser
+        analisado individualmente.
+      </p>
+      <div class="text-center mt-10">
+        <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="btn-primary">
+          <span class="flex items-center gap-2"
+            >Consultar um Especialista Sobre Meu Caso<Icon name="arrowRight" class="w-4 h-4" /></span
+          >
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- O que está incluído -->
+  <section class="py-24 md:py-32 bg-primary-50">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="section-label">Simulação Gratuita</p>
+        <h2 class="font-heading font-bold text-3xl md:text-4xl text-primary-900 mb-4">
+          Tudo Que Está Incluído na Sua Simulação Gratuita
+        </h2>
+        <p class="text-primary-700 text-lg max-w-2xl mx-auto">
+          Não é uma conversa superficial de 5 minutos. É uma análise completa do seu perfil com opções reais de planos.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-primary-200 mb-16">
+        {
+          incluido.map((it) => (
+            <div class="bg-white p-8">
+              <span class="w-12 h-12 bg-primary-50 border border-primary-200 flex items-center justify-center mb-5">
+                <Icon name={it.icone} class="w-5 h-5 text-accent" />
+              </span>
+              <h3 class="font-heading font-bold text-lg text-primary-900 mb-2">{it.titulo}</h3>
+              <p class="text-primary-700 text-sm leading-relaxed">{it.texto}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="bg-primary-900 p-8 lg:p-12">
+        <h3 class="font-heading font-bold text-xl text-white mb-8 text-center">
+          Depois da simulação, três caminhos possíveis
+        </h3>
+        <div class="grid md:grid-cols-3 gap-8">
+          {
+            caminhos.map((c, i) => (
+              <div class="border-t-2 border-accent pt-5">
+                <span class="font-heading text-3xl font-bold text-accent-400">{i + 1}</span>
+                <h4 class="font-heading font-semibold text-white mt-2 mb-2">{c.titulo}</h4>
+                <p class="text-primary-100 text-sm leading-relaxed">{c.texto}</p>
+              </div>
+            ))
+          }
+        </div>
+        <p class="text-center text-primary-100 mt-10 mb-8">
+          Em qualquer cenário, você sai ganhando. A pior decisão é não se informar.
+        </p>
+        <div class="text-center">
+          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="btn-primary">
+            <span class="flex items-center gap-2"
+              >Quero Minha Simulação Gratuita Agora<Icon name="arrowRight" class="w-4 h-4" /></span
+            >
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Depoimentos -->
+  <section class="bg-primary-950 py-24 md:py-32" id="depoimentos">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="section-label-light">Resultados Reais</p>
+        <h2 class="font-heading font-bold text-3xl md:text-4xl text-white mb-4">
+          Clientes Que Realizaram Seus Objetivos
+        </h2>
+        <p class="text-white/80 text-lg max-w-2xl mx-auto">
+          Mais de 50.000 clientes ativos em todo o Brasil. Confira histórias reais de quem conquistou seus bens sem
+          juros.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        {
+          depoimentos.map((d) => (
+            <figure class="bg-white/10 backdrop-blur-sm border border-white/10 p-8 hover:bg-white/15 transition-colors duration-300 m-0">
+              <div class="flex gap-0.5 mb-4">
+                {[1, 2, 3, 4, 5].map(() => <Icon name="starFill" class="w-4 h-4 text-accent-400" />)}
+              </div>
+              <blockquote class="text-primary-100 text-sm leading-relaxed italic mb-6">“{d.texto}”</blockquote>
+              <figcaption class="border-t border-white/10 pt-4">
+                <p class="font-heading font-semibold text-sm text-white">{d.nome}</p>
+                <p class="text-xs text-white/70">
+                  {d.local} · {d.produto}
+                </p>
+              </figcaption>
+            </figure>
+          ))
+        }
+      </div>
+      <div class="text-center mt-14">
+        <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="btn-primary">
+          <span class="flex items-center gap-2"
+            >Quero o Mesmo Resultado Para Mim<Icon name="arrowRight" class="w-4 h-4" /></span
+          >
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cobertura -->
+  <section class="bg-primary-900 py-24 md:py-32" id="cobertura">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="section-label-light">Cobertura Nacional</p>
+        <h2 class="font-heading font-bold text-3xl md:text-4xl text-white mb-4">
+          Presentes em Todas as 5.570 Cidades do Brasil
+        </h2>
+        <p class="text-white/80 text-lg max-w-2xl mx-auto">
+          De Norte a Sul, do litoral ao interior. Onde você estiver, a {site.nome} está.
+        </p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+        {
+          estadosPorRegiao.map((g) => (
+            <div class="bg-white/5 border border-white/10 p-6 backdrop-blur-sm">
+              <h3 class="font-heading font-bold text-lg text-white mb-4 flex items-center gap-2">
+                <Icon name="mapPin" class="w-4 h-4 text-accent-400" />
+                {g.regiao}
+              </h3>
+              <ul class="space-y-2 list-none p-0">
+                {g.estados.map((e) => (
+                  <li>
+                    <a class="text-white/80 text-sm hover:text-accent transition-colors" href={`/consorcio-em-${e.slug}`}>
+                      {e.nome}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+      <div class="text-center mt-14">
+        <a href="/localidades" class="btn-outline">
+          <span class="flex items-center gap-2">Simule Na Sua Cidade<Icon name="arrowRight" class="w-4 h-4" /></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-24 md:py-32 bg-white" id="faq">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="section-label">Tire Suas Dúvidas</p>
+        <h2 class="font-heading font-bold text-3xl md:text-4xl text-primary-900">
+          Perguntas Frequentes Sobre Consórcio
+        </h2>
+      </div>
+      <div class="divide-y divide-primary-100 border-y border-primary-100">
+        {
+          faq.map((f, i) => (
+            <details class="group" open={i === 0}>
+              <summary class="flex items-center justify-between gap-6 py-6 cursor-pointer list-none">
+                <h3 class="font-heading font-semibold text-lg text-primary-900">{f.pergunta}</h3>
+                <Icon
+                  name="chevronDown"
+                  class="w-5 h-5 text-accent shrink-0 transition-transform duration-300 group-open:rotate-180"
+                />
+              </summary>
+              <p class="text-primary-700 leading-relaxed pb-6 pr-10">{f.resposta}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaFinal />
+</BaseLayout>
+
+<style>
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

@@ -1,0 +1,100 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaFinal from '../../components/CtaFinal.astro';
+import Icon from '../../components/Icon.astro';
+import { site, whatsappUrl } from '../../data/site';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post, posts } }));
+}
+
+const { post, posts } = Astro.props;
+const { Content } = await render(post);
+const fmt = (d: Date) => d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+const relacionados = posts.filter((p) => p.id !== post.id && p.data.categoria === post.data.categoria).slice(0, 3);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.data.titulo,
+  description: post.data.descricao,
+  datePublished: post.data.data.toISOString(),
+  author: { '@type': 'Organization', name: site.nome },
+  publisher: { '@type': 'Organization', name: site.nome, url: site.url },
+};
+---
+
+<BaseLayout title={`${post.data.titulo} | ${site.nome}`} description={post.data.descricao}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(jsonLd)} />
+
+  <article>
+    <header class="bg-primary-950 pt-16 pb-20">
+      <div class="max-w-3xl mx-auto px-6">
+        <nav aria-label="Trilha de navegação" class="mb-8">
+          <ol class="flex flex-wrap items-center gap-2 text-xs text-white/60 list-none p-0 m-0">
+            <li><a href="/" class="hover:text-accent transition-colors">Início</a></li>
+            <li aria-hidden="true">/</li>
+            <li><a href="/blog" class="hover:text-accent transition-colors">Blog</a></li>
+            <li aria-hidden="true">/</li>
+            <li class="text-white/90">{post.data.categoria}</li>
+          </ol>
+        </nav>
+        <p class="text-accent text-sm font-semibold uppercase tracking-[0.25em] mb-5">
+          {post.data.categoria} · {post.data.leitura} min de leitura
+        </p>
+        <h1 class="font-heading text-3xl md:text-5xl font-bold text-white leading-[1.1] mb-6">{post.data.titulo}</h1>
+        <p class="text-white/80 text-lg leading-relaxed mb-8">{post.data.resumo}</p>
+        <p class="text-white/50 text-sm border-t border-white/10 pt-6">Equipe {site.nome} · {fmt(post.data.data)}</p>
+      </div>
+    </header>
+
+    <div class="py-20 bg-white">
+      <div class="max-w-3xl mx-auto px-6 prose-consorcio">
+        <Content />
+      </div>
+    </div>
+  </article>
+
+  <section class="pb-20 bg-white">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="bg-primary-50 border-l-2 border-accent p-8">
+        <h2 class="font-heading font-bold text-xl text-primary-900 mb-3">Quer aplicar isso ao seu caso?</h2>
+        <p class="text-primary-700 text-sm leading-relaxed mb-6">
+          A simulação gratuita compara taxa de administração, fundo de reserva, seguro e prazo de até 37 administradoras
+          — com os números do seu perfil, não de um exemplo genérico.
+        </p>
+        <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="btn-primary">
+          <span class="flex items-center gap-2">Simular Gratuitamente<Icon name="arrowRight" class="w-4 h-4" /></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {
+    relacionados.length > 0 && (
+      <section class="py-20 bg-primary-50">
+        <div class="max-w-7xl mx-auto px-6">
+          <p class="section-label">Continue lendo</p>
+          <h2 class="font-heading font-bold text-2xl text-primary-900 mb-10">Artigos relacionados</h2>
+          <ul class="grid md:grid-cols-3 gap-px bg-primary-200 list-none p-0 m-0">
+            {relacionados.map((p) => (
+              <li class="bg-white">
+                <a href={`/blog/${p.id}`} class="group block p-8 h-full">
+                  <p class="text-xs uppercase tracking-[0.2em] font-semibold text-accent-700 mb-3">{p.data.leitura} min</p>
+                  <h3 class="font-heading font-bold text-lg text-primary-900 mb-2 leading-snug group-hover:text-accent-600 transition-colors">
+                    {p.data.titulo}
+                  </h3>
+                  <p class="text-primary-700 text-sm leading-relaxed">{p.data.resumo}</p>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )
+  }
+
+  <CtaFinal />
+</BaseLayout>

@@ -1,0 +1,43 @@
+---
+import Icon from './Icon.astro';
+import { depoimentos } from '../data/depoimentos';
+
+interface Props {
+  limite?: number;
+  titulo?: string;
+}
+const { limite = 6, titulo = 'Clientes Que Realizaram Seus Objetivos' } = Astro.props;
+const lista = depoimentos.slice(0, limite);
+---
+
+<section class="bg-primary-950 py-24 md:py-32">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <p class="section-label-light">Resultados Reais</p>
+      <h2 class="font-heading font-bold text-3xl md:text-4xl text-white mb-4">{titulo}</h2>
+      <p class="text-white/80 text-lg max-w-2xl mx-auto">
+        Mais de 50.000 clientes ativos em todo o Brasil. Histórias reais de quem conquistou seus bens sem juros.
+      </p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      {
+        lista.map((d) => (
+          <figure class="bg-white/10 backdrop-blur-sm border border-white/10 p-8 hover:bg-white/15 transition-colors duration-300 m-0">
+            <div class="flex gap-0.5 mb-4">
+              {[1, 2, 3, 4, 5].map(() => (
+                <Icon name="starFill" class="w-4 h-4 text-accent-400" />
+              ))}
+            </div>
+            <blockquote class="text-primary-100 text-sm leading-relaxed italic mb-6">“{d.texto}”</blockquote>
+            <figcaption class="border-t border-white/10 pt-4">
+              <p class="font-heading font-semibold text-sm text-white">{d.nome}</p>
+              <p class="text-xs text-white/70">
+                {d.local} · {d.produto}
+              </p>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>
