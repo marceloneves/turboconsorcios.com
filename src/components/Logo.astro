@@ -1,0 +1,24 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+
+interface Props {
+  claro?: boolean;
+}
+const { claro = false } = Astro.props;
+---
+
+<a href="/" class="flex items-center gap-3 shrink-0" aria-label={`${site.nome} — Página inicial`}>
+  <span class="w-11 h-11 rounded bg-brand flex items-center justify-center">
+    <Icon name="zap" class="w-6 h-6 text-white" />
+  </span>
+  <span class="flex flex-col leading-none">
+    <span
+      class:list={[
+        'font-heading font-bold text-[22px] tracking-[3px] uppercase',
+        claro ? 'text-white' : 'text-ink',
+      ]}>{site.marca}</span
+    >
+    <span class="font-heading font-medium text-[13px] tracking-[2px] text-brand mt-1">{site.submarca}</span>
+  </span>
+</a>

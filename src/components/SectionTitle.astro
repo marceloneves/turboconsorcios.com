@@ -1,0 +1,16 @@
+---
+/* section-title do Fixnix: tagline laranja com traços + título */
+interface Props {
+  tagline: string;
+  titulo: string;
+  centro?: boolean;
+  claro?: boolean;
+  class?: string;
+}
+const { tagline, titulo, centro = false, claro = false, class: className = '' } = Astro.props;
+---
+
+<div class:list={['mb-[49px]', centro ? 'text-center' : '', className]}>
+  <span class:list={['section-tagline', centro ? 'mx-14' : 'ml-14 section-tagline-left']}>{tagline}</span>
+  <h2 class:list={['section-title', claro ? 'text-white' : 'text-ink']}>{titulo}</h2>
+</div>

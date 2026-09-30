@@ -9,9 +9,11 @@ interface Props {
   title: string;
   description: string;
   canonical?: string;
+  /* false = noindex (páginas que ainda não cumprem a condição de publicação da planilha) */
+  indexar?: boolean;
 }
-const { title, description, canonical } = Astro.props;
-const href = canonical ?? new URL(Astro.url.pathname, site.url).href;
+const { title, description, canonical, indexar = true } = Astro.props;
+const href = new URL(canonical ?? Astro.url.pathname, site.url).href;
 ---
 
 <!doctype html>
@@ -22,24 +24,26 @@ const href = canonical ?? new URL(Astro.url.pathname, site.url).href;
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={href} />
+    {!indexar && <meta name="robots" content="noindex, follow" />}
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.nome} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={href} />
     <meta property="og:locale" content="pt_BR" />
+    <meta name="theme-color" content="#102a43" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&family=Saira:wght@500;600;700&display=swap"
     />
     <slot name="head" />
   </head>
   <body class="antialiased">
     <Header />
-    <main>
+    <main id="conteudo">
       <slot />
     </main>
     <Footer />

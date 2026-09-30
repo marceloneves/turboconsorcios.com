@@ -1,0 +1,25 @@
+---
+/* counter-one: faixa laranja com foto em multiply, 4 números separados por divisórias */
+import { numeros } from '../data/site';
+---
+
+<section class="relative isolate bg-brand overflow-hidden py-[70px] lg:py-[100px]">
+  <img src="/images/highway.webp" alt="" aria-hidden="true" class="absolute inset-0 -z-10 w-full h-full object-cover mix-blend-multiply opacity-60" loading="lazy" />
+  <ul class="container-x grid grid-cols-2 lg:grid-cols-4 gap-y-10">
+    {
+      numeros.map((n, i) => (
+        <li
+          class:list={[
+            'relative text-center px-4',
+            'after:absolute after:right-0 after:top-5 after:bottom-0 after:w-px after:bg-white/40',
+            i % 2 === 1 && 'max-lg:after:hidden',
+            i === numeros.length - 1 && 'after:hidden',
+          ]}
+        >
+          <p class="font-heading text-white text-[44px] leading-[54px] lg:text-[60px] lg:leading-[70px] font-bold">{n.valor}</p>
+          <p class="mt-1 text-white text-[16px] lg:text-[18px] font-semibold">{n.rotulo}</p>
+        </li>
+      ))
+    }
+  </ul>
+</section>

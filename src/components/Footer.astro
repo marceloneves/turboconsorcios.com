@@ -1,30 +1,34 @@
 ---
 import Icon from './Icon.astro';
-import { site } from '../data/site';
-import { consorciosDestaque } from '../data/consorcios';
+import Logo from './Logo.astro';
+import { site, whatsappUrl } from '../data/site';
+import { menuRodape } from '../data/navegacao';
 
 const ano = new Date().getFullYear();
-const [principais, secundarios] = [consorciosDestaque.slice(0, 5), consorciosDestaque.slice(5)];
 const sociais = [
   { nome: 'instagram', href: site.social.instagram, rotulo: 'Instagram' },
   { nome: 'facebook', href: site.social.facebook, rotulo: 'Facebook' },
   { nome: 'linkedin', href: site.social.linkedin, rotulo: 'LinkedIn' },
   { nome: 'youtube', href: site.social.youtube, rotulo: 'YouTube' },
 ];
+const tituloColuna =
+  'font-heading text-[20px] font-semibold text-white mb-6 pb-3 relative after:absolute after:left-0 after:bottom-0 after:w-10 after:h-[2px] after:bg-brand';
 ---
 
-<footer class="bg-primary-950 text-white" role="contentinfo">
-  <div class="max-w-7xl mx-auto px-6 py-20">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
-      <div class="lg:col-span-1">
-        <div class="flex items-center gap-3 mb-6">
-          <span class="w-10 h-10 bg-accent flex items-center justify-center">
-            <Icon name="zap" class="w-5 h-5 text-white" />
-          </span>
-          <span class="text-lg font-heading font-bold text-white">{site.nome}</span>
-        </div>
-        <p class="text-white/80 text-sm leading-relaxed mb-6">{site.descricao}</p>
-        <div class="flex gap-2">
+<footer class="relative bg-ink-950 text-white/70 overflow-hidden pb-[52px] md:pb-0" role="contentinfo">
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgb(234_88_12/0.18),transparent_55%)]" aria-hidden="true"></div>
+
+  <div class="relative container-x pt-[90px] pb-16 lg:pt-[110px] lg:pb-[90px]">
+    <div class="grid gap-12 lg:grid-cols-[1.2fr_3fr]">
+      <div>
+        <Logo claro />
+        <p class="mt-7 text-[15px] leading-7">{site.descricao}</p>
+        <ul class="mt-7 space-y-2 text-[15px]">
+          <li class="flex items-center gap-3"><Icon name="phone" class="w-4 h-4 text-brand" /><a href={site.telefoneLink} class="hover:text-white">{site.telefone}</a></li>
+          <li class="flex items-center gap-3"><Icon name="whatsapp" class="w-4 h-4 text-brand" /><a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="hover:text-white">WhatsApp</a></li>
+          <li class="flex items-center gap-3"><Icon name="mail" class="w-4 h-4 text-brand" /><a href={`mailto:${site.email}`} class="hover:text-white">{site.email}</a></li>
+        </ul>
+        <div class="flex gap-2.5 mt-7">
           {
             sociais.map((s) => (
               <a
@@ -32,7 +36,7 @@ const sociais = [
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={s.rotulo}
-                class="w-10 h-10 border border-primary-700 flex items-center justify-center text-white hover:bg-accent hover:border-accent transition-all duration-300"
+                class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white transition-colors hover:bg-brand"
               >
                 <Icon name={s.nome} class="w-4 h-4" />
               </a>
@@ -41,83 +45,31 @@ const sociais = [
         </div>
       </div>
 
-      <div>
-        <h3 class="font-heading font-semibold text-sm uppercase tracking-[0.15em] mb-6 text-white">Navegação</h3>
-        <ul class="space-y-3">
-          <li><a class="text-white/80 text-sm hover:text-accent transition-colors" href="/">Início</a></li>
-          <li><a class="text-white/80 text-sm hover:text-accent transition-colors" href="/sobre">Sobre Nós</a></li>
-          <li><a class="text-white/80 text-sm hover:text-accent transition-colors" href="/blog">Blog</a></li>
-          <li><a class="text-white/80 text-sm hover:text-accent transition-colors" href="/contato">Contato</a></li>
-          <li>
-            <a class="text-white/80 text-sm hover:text-accent transition-colors" href="/mapa-do-site">Mapa do Site</a>
-          </li>
-          <li>
-            <a class="text-white/80 text-sm hover:text-accent transition-colors" href="/localidades">Localidades</a>
-          </li>
-        </ul>
-      </div>
-
-      <div>
-        <h3 class="font-heading font-semibold text-sm uppercase tracking-[0.15em] mb-6 text-white">Consórcios</h3>
-        <ul class="space-y-3">
-          {
-            principais.map((c) => (
-              <li>
-                <a class="text-white/80 text-sm hover:text-accent transition-colors" href={`/${c.slug}`}>
-                  {c.nome}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-
-      <div>
-        <h3 class="font-heading font-semibold text-sm uppercase tracking-[0.15em] mb-6 text-white">Mais Consórcios</h3>
-        <ul class="space-y-3">
-          {
-            secundarios.map((c) => (
-              <li>
-                <a class="text-white/80 text-sm hover:text-accent transition-colors" href={`/${c.slug}`}>
-                  {c.nome}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-
-      <div>
-        <h3 class="font-heading font-semibold text-sm uppercase tracking-[0.15em] mb-6 text-white">Contato</h3>
-        <ul class="space-y-4">
-          <li class="flex items-start gap-3">
-            <Icon name="phone" class="w-4 h-4 text-accent mt-0.5 shrink-0" />
-            <a class="text-white/80 text-sm hover:text-accent transition-colors" href={site.telefoneLink}
-              >{site.telefone}</a
-            >
-          </li>
-          <li class="flex items-start gap-3">
-            <Icon name="mail" class="w-4 h-4 text-accent mt-0.5 shrink-0" />
-            <a class="text-white/80 text-sm hover:text-accent transition-colors break-all" href={`mailto:${site.email}`}
-              >{site.email}</a
-            >
-          </li>
-          <li class="flex items-start gap-3">
-            <Icon name="mapPin" class="w-4 h-4 text-accent mt-0.5 shrink-0" />
-            <span class="text-white/80 text-sm">Todas as 5.570 cidades do Brasil</span>
-          </li>
-        </ul>
+      <div class="grid gap-10 sm:grid-cols-2 md:grid-cols-3">
+        {
+          menuRodape.map((c) => (
+            <div>
+              <h2 class={tituloColuna}>{c.titulo}</h2>
+              <ul class="space-y-1.5">
+                {c.links.map((l) => (
+                  <li>
+                    <a href={l.url} class="text-[15px] leading-6 hover:text-brand">
+                      {l.rotulo}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
       </div>
     </div>
   </div>
 
-  <div class="border-t border-primary-800">
-    <div class="max-w-7xl mx-auto px-6 py-6">
-      <p class="text-white/60 text-xs text-center leading-relaxed">
-        © {ano}
-        <span class="text-white/80">{site.nome}</span>. Todos os direitos reservados. Regulamentado pelo Banco Central do
-        Brasil.
-      </p>
+  <div class="relative border-t border-white/10">
+    <div class="container-x flex flex-col md:flex-row items-center justify-between gap-3 py-7 text-[14px] text-center">
+      <p>© {ano} {site.nome}. Todos os direitos reservados.</p>
+      <p>Administradoras autorizadas pelo Banco Central · Lei 11.795/2008</p>
     </div>
   </div>
 </footer>

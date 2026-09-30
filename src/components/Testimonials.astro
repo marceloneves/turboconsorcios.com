@@ -1,0 +1,67 @@
+---
+/* testimonial-one: um depoimento por vez; caixa do cliente à esquerda, citação grande à direita */
+import Icon from './Icon.astro';
+import SectionTitle from './SectionTitle.astro';
+import { depoimentos } from '../data/depoimentos';
+
+const lista = depoimentos.slice(0, 6);
+---
+
+<section class="section-y bg-soft" data-depoimentos>
+  <div class="container-x">
+    <div class="flex flex-wrap items-end justify-between gap-6 mb-[49px]">
+      <SectionTitle tagline="Depoimentos" titulo="O que dizem nossos clientes" class="!mb-0" />
+      <div class="flex gap-3">
+        <button type="button" data-anterior class="w-[50px] h-[50px] rounded-full bg-white shadow-card text-ink flex items-center justify-center hover:bg-brand hover:text-white transition-colors" aria-label="Depoimento anterior">
+          <Icon name="arrowRight" class="w-5 h-5 rotate-180" />
+        </button>
+        <button type="button" data-proximo class="w-[50px] h-[50px] rounded-full bg-white shadow-card text-ink flex items-center justify-center hover:bg-brand hover:text-white transition-colors" aria-label="Próximo depoimento">
+          <Icon name="arrowRight" class="w-5 h-5" />
+        </button>
+      </div>
+    </div>
+
+    <ul data-trilho class="-my-8 -mx-3.5 flex overflow-x-auto snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      {
+        lista.map((d) => (
+          <li class="snap-start shrink-0 w-full flex flex-col md:flex-row md:items-center gap-10 md:gap-[60px] py-8 px-3.5 overflow-hidden">
+            <div class="shrink-0 w-[222px] md:w-[262px] bg-white shadow-card rounded-[5px] p-5">
+              <div class="relative h-[200px] md:h-[240px] rounded-[5px] bg-ink flex flex-col items-center justify-center text-center overflow-hidden">
+                <span class="absolute -right-6 -top-6 w-28 h-28 rounded-full bg-brand/30" aria-hidden="true" />
+                <span class="relative w-20 h-20 rounded-full bg-brand text-white font-heading text-[36px] font-bold flex items-center justify-center">{d.nome.charAt(0)}</span>
+                <span class="relative mt-4 px-3 text-white/80 text-[13px] font-semibold leading-5">{d.produto}</span>
+              </div>
+            </div>
+            <figure class="m-0">
+              <Icon name="quote" class="w-12 h-12 text-brand" />
+              <blockquote class="font-heading text-ink text-[20px] leading-[32px] md:text-[24px] md:leading-[36px] font-semibold mt-4 mb-6">“{d.texto}”</blockquote>
+              <figcaption class="flex items-center gap-4">
+                <span class="flex gap-0.5 text-brand">{[1, 2, 3, 4, 5].map(() => <Icon name="starFill" class="w-4 h-4" />)}</span>
+                <span>
+                  <span class="block font-heading text-ink text-[20px] font-semibold leading-7">{d.nome}</span>
+                  <span class="block text-[14px] leading-5">{d.local}</span>
+                </span>
+              </figcaption>
+            </figure>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-depoimentos]').forEach((sec) => {
+    const trilho = sec.querySelector<HTMLElement>('[data-trilho]')!;
+    const passo = (dir: number) => {
+      const w = trilho.clientWidth;
+      const fim = trilho.scrollLeft + w >= trilho.scrollWidth - 4;
+      const inicio = trilho.scrollLeft <= 4;
+      if (dir > 0 && fim) trilho.scrollTo({ left: 0 });
+      else if (dir < 0 && inicio) trilho.scrollTo({ left: trilho.scrollWidth });
+      else trilho.scrollBy({ left: dir * w });
+    };
+    sec.querySelector('[data-anterior]')?.addEventListener('click', () => passo(-1));
+    sec.querySelector('[data-proximo]')?.addEventListener('click', () => passo(1));
+  });
+</script>

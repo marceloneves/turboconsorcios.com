@@ -1,0 +1,50 @@
+---
+/* why-choose-one: cards brancos com sombra em volta de uma imagem central; no hover borda laranja e deslocamento */
+import Icon from './Icon.astro';
+import SectionTitle from './SectionTitle.astro';
+import type { Item } from '../data/conteudo';
+
+interface Props {
+  tagline: string;
+  titulo: string;
+  itens: Item[];
+  imagem: string;
+  alt: string;
+  id?: string;
+}
+const { tagline, titulo, itens, imagem, alt, id } = Astro.props;
+const metade = Math.ceil(itens.length / 2);
+const colunas = [itens.slice(0, metade), itens.slice(metade)];
+const card =
+  'flex items-start gap-5 bg-white shadow-card border border-transparent rounded-[8px] px-[26px] py-[24px] mb-[30px] transition-all duration-500 hover:border-brand hover:-translate-y-2.5 hover:translate-x-2.5';
+---
+
+<section class="section-y bg-white" id={id}>
+  <div class="container-x">
+    <SectionTitle tagline={tagline} titulo={titulo} centro />
+    <div class="grid gap-x-[30px] lg:grid-cols-[1fr_360px_1fr] items-center">
+      {
+        colunas.map((col, i) => (
+          <ul class:list={[i === 1 && 'lg:order-3']}>
+            {col.map((it) => (
+              <li class={card}>
+                <span class="w-[60px] h-[60px] shrink-0 rounded-[6px] bg-brand/10 text-brand flex items-center justify-center">
+                  <Icon name={it.icone} class="w-7 h-7" />
+                </span>
+                <span>
+                  <span class="block font-heading text-[22px] leading-[32px] font-semibold text-ink mb-1.5">{it.titulo}</span>
+                  <span class="block text-[15px] leading-[26px]">{it.texto}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        ))
+      }
+      <div class="hidden lg:block lg:order-2 mb-[30px]">
+        <div class="relative rounded-[8px] overflow-hidden bg-brand">
+          <img src={imagem} alt={alt} class="w-full h-[440px] object-cover mix-blend-multiply opacity-90" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

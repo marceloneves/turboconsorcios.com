@@ -1,0 +1,37 @@
+---
+/* services-one: card com foto, ícone sobreposto, título e resumo; zoom e véu laranja na foto no hover */
+import Icon from './Icon.astro';
+import type { Consorcio } from '../data/consorcios';
+
+interface Props {
+  itens: Consorcio[];
+}
+const { itens } = Astro.props;
+---
+
+<ul class="grid gap-[30px] sm:grid-cols-2 lg:grid-cols-3">
+  {
+    itens.map((c) => (
+      <li class="group relative bg-white shadow-card rounded-[8px] overflow-hidden flex flex-col">
+        <div class="relative overflow-hidden aspect-[370/250] bg-ink">
+          <img src={c.imagem} alt="" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+          <span class="absolute inset-x-0 top-1/2 bottom-1/2 bg-brand/50 transition-all duration-500 group-hover:top-0 group-hover:bottom-0" />
+        </div>
+        <span class="absolute top-[30px] left-[30px] z-[2] w-[70px] h-[70px] rounded bg-brand text-white flex items-center justify-center transition-colors duration-500 group-hover:bg-white group-hover:text-brand">
+          <Icon name={c.icone} class="w-8 h-8" />
+        </span>
+        <div class="flex flex-col flex-1 px-[30px] pt-[26px] pb-[30px]">
+          <p class="text-[13px] font-bold uppercase tracking-[0.08em] text-brand mb-1">{c.credito}</p>
+          <h3 class="font-heading text-ink text-[24px] leading-[34px] font-semibold mb-2.5">{c.nome}</h3>
+          <p class="text-[15px] leading-[26px] flex-1">{c.resumo}</p>
+          <a href="#simular" class="mt-5 inline-flex items-center gap-2 font-heading font-semibold text-ink hover:text-brand" aria-label={`Simular ${c.nome}`}>
+            Simular agora
+            <span class="w-8 h-8 rounded-full bg-soft flex items-center justify-center transition-colors group-hover:bg-brand group-hover:text-white">
+              <Icon name="arrowRight" class="w-4 h-4" />
+            </span>
+          </a>
+        </div>
+      </li>
+    ))
+  }
+</ul>

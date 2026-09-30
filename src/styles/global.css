@@ -1,29 +1,44 @@
 @import "tailwindcss";
 
+/*
+ * Design system Turbo Consórcios — layout inspirado no template Fixnix
+ * (tagline com traços, botão com preenchimento circular, cards com sombra suave,
+ * seções escuras com cards que "enchem" no hover), com a paleta navy/laranja da Turbo.
+ */
 @theme {
-  /* Paleta navy — identidade Turbo Consórcios */
-  --color-primary-50: #e6eef5;
-  --color-primary-100: #c2d6e8;
-  --color-primary-200: #8fb3d4;
-  --color-primary-300: #5f96c6;
-  --color-primary-400: #3d7ab8;
-  --color-primary-500: #2b6099;
-  --color-primary-600: #22557f;
-  --color-primary-700: #1a4b7a;
-  --color-primary-800: #133a5e;
-  --color-primary-900: #102a43;
-  --color-primary-950: #0a1929;
+  /* Brand (equivale a --fixnix-base) */
+  --color-brand: #ea580c;
+  --color-brand-600: #c2410c;
+  --color-brand-700: #9a3412;
+  --color-brand-300: #fb923c;
 
-  /* Acento laranja */
-  --color-accent: #ea580c;
-  --color-accent-400: #fb923c;
-  --color-accent-500: #f97316;
-  --color-accent-600: #c2410c;
-  --color-accent-700: #9a3412;
+  /* Ink (equivale a --fixnix-black) */
+  --color-ink: #102a43;
+  --color-ink-950: #0a1929;
+  --color-ink-800: #133a5e;
+  --color-ink-700: #1a4b7a;
 
-  --font-heading: Poppins, ui-sans-serif, system-ui, sans-serif;
-  --font-body: Inter, ui-sans-serif, system-ui, sans-serif;
-  --font-sans: Inter, ui-sans-serif, system-ui, sans-serif;
+  /* Neutros */
+  --color-soft: #f5f7fa;
+  --color-muted: #5b6b7c;
+  --color-line: #e3e8ee;
+
+  --font-heading: Saira, ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Nunito Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Nunito Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-card: 0 8px 29px 0 rgb(0 0 0 / 0.1);
+
+  --animate-hero-zoom: hero-zoom 7s ease forwards;
+
+  @keyframes hero-zoom {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.15);
+    }
+  }
 }
 
 @layer base {
@@ -32,160 +47,211 @@
   }
   body {
     font-family: var(--font-body);
-    color: var(--color-primary-900);
+    font-size: 16px;
+    line-height: 30px;
+    color: var(--color-muted);
     background-color: #fff;
   }
-}
-
-@utility btn-primary {
-  position: relative;
-  display: inline-block;
-  overflow: hidden;
-  background-color: var(--color-accent-600);
-  padding: 1rem 2rem;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #fff;
-  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover {
-    background-color: var(--color-accent-700);
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    color: var(--color-ink);
+  }
+  a {
+    transition: color 0.3s ease;
   }
 }
 
-@utility btn-outline {
-  position: relative;
-  display: inline-block;
-  overflow: hidden;
-  border-width: 2px;
-  border-color: #fff;
-  padding: 1rem 2rem;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #fff;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover {
-    background-color: #fff;
-    color: var(--color-primary-900);
-  }
-}
-
-@utility section-label {
-  margin-bottom: 1rem;
-  display: block;
-  font-size: 0.75rem;
-  line-height: 1rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--color-accent-700);
-}
-
-@utility section-label-light {
-  margin-bottom: 1rem;
-  display: block;
-  font-size: 0.75rem;
-  line-height: 1rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--color-accent-400);
-}
-
-/* Tipografia dos artigos do blog */
-.prose-consorcio {
-  color: var(--color-primary-700);
-  line-height: 1.75;
-}
-.prose-consorcio > * + * {
-  margin-top: 1.25rem;
-}
-.prose-consorcio h2 {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.75rem;
-  line-height: 1.25;
-  color: var(--color-primary-900);
-  margin-top: 3rem;
-  margin-bottom: 1rem;
-}
-.prose-consorcio h3 {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.25rem;
-  color: var(--color-primary-900);
-  margin-top: 2rem;
-  margin-bottom: 0.5rem;
-}
-.prose-consorcio strong {
-  color: var(--color-primary-900);
-  font-weight: 600;
-}
-.prose-consorcio a {
-  color: var(--color-accent-700);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-.prose-consorcio a:hover {
-  color: var(--color-accent);
-}
-.prose-consorcio ul,
-.prose-consorcio ol {
-  padding-left: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-.prose-consorcio ul {
-  list-style: none;
-  padding-left: 0;
-}
-.prose-consorcio ul > li {
-  position: relative;
-  padding-left: 1.5rem;
-}
-.prose-consorcio ul > li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.65em;
-  width: 0.4rem;
-  height: 0.4rem;
-  background-color: var(--color-accent);
-}
-.prose-consorcio ol {
-  list-style: decimal;
-}
-.prose-consorcio blockquote {
-  border-left: 2px solid var(--color-accent);
-  padding-left: 1.5rem;
-  font-style: italic;
-  color: var(--color-primary-800);
-}
-.prose-consorcio table {
+/* Container de 1200px do Fixnix */
+@utility container-x {
   width: 100%;
-  border-collapse: collapse;
-  font-size: 0.875rem;
-  display: block;
-  overflow-x: auto;
+  max-width: 1230px;
+  margin-inline: auto;
+  padding-inline: 15px;
 }
-.prose-consorcio th,
-.prose-consorcio td {
-  border: 1px solid var(--color-primary-100);
-  padding: 0.75rem 1rem;
-  text-align: left;
+
+/* Espaçamento vertical padrão das seções (120px no desktop) */
+@utility section-y {
+  padding-block: 80px;
+  @media (width >= 64rem) {
+    padding-block: 120px;
+  }
 }
-.prose-consorcio th {
-  background-color: var(--color-primary-50);
-  font-family: var(--font-heading);
+
+/* Botão principal: fundo laranja, círculo navy sobe no hover */
+@utility thm-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  vertical-align: middle;
+  background-color: var(--color-brand);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 30px;
+  font-weight: 700;
+  padding: 13px 40px 12px;
+  border-radius: 4px;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color 0.5s linear;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background-color: var(--color-ink);
+    transition-duration: 0.8s;
+    z-index: -1;
+  }
+  &:hover {
+    color: #fff;
+  }
+  &:hover::before {
+    top: -40%;
+  }
+}
+
+/* Variação clara do botão (usada sobre fundos laranja/navy) */
+@utility thm-btn-light {
+  background-color: #fff;
+  color: var(--color-ink);
+}
+
+/* Tagline de seção com traços de 40px à esquerda e à direita */
+@utility section-tagline {
+  position: relative;
+  display: inline-block;
+  font-size: 16px;
+  line-height: 16px;
   font-weight: 600;
-  color: var(--color-primary-900);
-  white-space: nowrap;
+  text-transform: uppercase;
+  color: var(--color-brand);
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 6px;
+    width: 40px;
+    height: 2px;
+    background-color: var(--color-brand);
+  }
+  &::before {
+    left: -56px;
+  }
+  &::after {
+    right: -56px;
+  }
+}
+
+/* Tagline só com traço à esquerda (títulos alinhados à esquerda) */
+@utility section-tagline-left {
+  &::after {
+    display: none;
+  }
+}
+
+@utility section-title {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  line-height: 42px;
+  font-weight: 600;
+  margin-top: 14px;
+  @media (width >= 64rem) {
+    font-size: 42px;
+    line-height: 52px;
+  }
+}
+
+/* Header fixo ao rolar (stricky-header) */
+.header-stuck {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  animation: header-down 0.5s ease;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.08);
+}
+@keyframes header-down {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Acordeão (faq-one-accrodion) com <details> nativo */
+.accordion summary {
+  list-style: none;
+  cursor: pointer;
+}
+.accordion summary::-webkit-details-marker {
+  display: none;
+}
+.accordion-icon svg {
+  transition: transform 0.3s ease;
+}
+.accordion[open] .accordion-icon svg {
+  transform: rotate(45deg);
+}
+
+/* Slider do hero */
+.hero-slide {
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 1.5s ease-in,
+    visibility 1.5s;
+}
+.hero-slide.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+.hero-slide.is-active .hero-slide-img {
+  animation: var(--animate-hero-zoom);
+}
+.hero-slide .hero-anim-top,
+.hero-slide .hero-anim-bottom {
+  opacity: 0;
+  transition:
+    transform 2s ease,
+    opacity 2s ease;
+}
+.hero-slide .hero-anim-top {
+  transform: translateY(-80px);
+}
+.hero-slide .hero-anim-bottom {
+  transform: translateY(80px);
+}
+.hero-slide.is-active .hero-anim-top,
+.hero-slide.is-active .hero-anim-bottom {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .hero-slide.is-active .hero-slide-img {
+    animation: none;
+  }
+  .hero-slide .hero-anim-top,
+  .hero-slide .hero-anim-bottom {
+    transition: none;
+    transform: none;
+  }
 }

@@ -1,0 +1,323 @@
+---
+/*
+ * Todas as páginas da arquitetura (planilha "Mapa de Hubs e Arquitetura"), exceto a home.
+ * Conteúdo mínimo montado a partir dos campos da planilha (gancho, intenção, frase do cliente,
+ * objeção e perguntas de FAQ) + respostas de src/data/respostas.ts e textos de src/data/institucional.ts.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import FaqLista from '../components/FaqLista.astro';
+import ContactCta from '../components/ContactCta.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Icon from '../components/Icon.astro';
+import { paginas, paginaPorUrl, filhos, trilha, type Pagina } from '../data/paginas';
+import { respostasObjecao, comoFunciona, comparacaoFinanciamento } from '../data/respostas';
+import { institucional } from '../data/institucional';
+
+export function getStaticPaths() {
+  return paginas
+    .filter((p) => p.url !== '/')
+    .map((p) => ({ params: { slug: p.url.replace(/^\/|\/$/g, '') }, props: { p } }));
+}
+
+type Extra = Pagina & {
+  persona?: string;
+  gancho?: string;
+  frase?: string;
+  intencao?: string;
+  objecao?: string;
+  medo?: string;
+  faq?: string[];
+  cta?: string;
+  hubRelacionado?: string;
+  marca?: string;
+  tipoConsorcio?: string;
+  segmentos?: string[];
+  reputacao?: string[];
+  palavra?: string;
+};
+const { p } = Astro.props as { p: Extra };
+
+const caminho = trilha(p.url).map((t) => ({ rotulo: t.url === '/' ? 'Início' : t.nome, href: t.url }));
+const inst = institucional[p.url];
+const ehMarca = p.tipo === 'Definir representação' && !p.tipoConsorcio;
+const ehMarcaTipo = p.tipo === 'Definir representação' && !!p.tipoConsorcio;
+const ehArtigo = ['Artigo guia', 'Página comparativa'].includes(p.tipo);
+const ehParceria = p.tipo === 'Página B2B';
+const mostraPassos = !inst && !ehMarca && !ehParceria && !ehArtigo;
+const mostraComparacao = ['Página de serviço', 'Página de valor de carta', 'Página local', 'Hub pilar', 'Landing de persona', 'Página comparativa'].includes(p.tipo);
+const hubRelacionado = p.hubRelacionado ? paginaPorUrl.get(p.hubRelacionado) : undefined;
+const resposta = p.objecao ? respostasObjecao[p.objecao] : undefined;
+const minusculaInicial = (s: string) => s.charAt(0).toLowerCase() + s.slice(1);
+
+// Filhas agrupadas pela seção da planilha (sub-hub, camada ou tipo de empresa)
+const grupos = new Map<string, Pagina[]>();
+for (const f of filhos(p.url)) {
+  const chave = f.secao || 'Páginas';
+  grupos.set(chave, [...(grupos.get(chave) ?? []), f]);
+}
+const ancora = (s: string) =>
+  s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+// Sem filhas: links para páginas irmãs, reforçando o silo
+const irmas = grupos.size === 0 && p.pai ? filhos(p.pai).filter((f) => f.url !== p.url && f.indexar).slice(0, 6) : [];
+const pai = p.pai ? paginaPorUrl.get(p.pai) : undefined;
+
+const descricao = p.description || inst?.descricao || '';
+const ctaTexto = p.cta || (ehParceria ? 'Quero ser parceiro' : 'Simular grátis');
+---
+
+<BaseLayout title={p.title || `${p.nome} | Turbo Consórcios`} description={descricao} canonical={p.url} indexar={p.indexar}>
+  <PageHero titulo={p.h1} trilha={caminho} />
+
+  {/* Páginas institucionais */}
+  {
+    inst && (
+      <section class="section-y bg-white">
+        <div class="container-x max-w-[900px]">
+          <p class="font-heading text-ink text-[22px] leading-[34px] font-medium">{inst.intro}</p>
+          {inst.secoes.map((s) => (
+            <div class="mt-12">
+              <h2 class="font-heading text-ink text-[28px] leading-[38px] font-semibold mb-4">{s.titulo}</h2>
+              {s.texto && <p>{s.texto}</p>}
+              {s.itens && (
+                <ul class="space-y-3">
+                  {s.itens.map((it) => (
+                    <li class="flex gap-3">
+                      <Icon name="check" class="w-5 h-5 shrink-0 mt-1.5 text-brand" />
+                      {it}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+    )
+  }
+  {p.url === '/depoimentos/' && <Testimonials />}
+
+  {/* Páginas de marca: análise independente, sem sugerir vínculo */}
+  {
+    (ehMarca || ehMarcaTipo) && (
+      <section class="section-y bg-white">
+        <div class="container-x grid gap-12 lg:grid-cols-[3fr_2fr] items-start">
+          <div>
+            <SectionTitle tagline="Análise independente" titulo={`Antes de contratar ${p.palavra ?? p.nome}`} class="!mb-6" />
+            <p>
+              Esta página reúne informações para você avaliar {p.palavra ?? p.nome} com calma: onde conferir a reputação,
+              o que comparar e como simular alternativas antes de decidir.
+            </p>
+            {ehMarcaTipo && hubRelacionado && (
+              <p class="mt-4">
+                Para entender como funciona este tipo de consórcio, veja o guia de{' '}
+                <a href={hubRelacionado.url} class="text-brand font-semibold hover:text-ink">{hubRelacionado.nome.toLowerCase()}</a>.
+              </p>
+            )}
+            {p.reputacao && p.reputacao.length > 0 && (
+              <div class="mt-10">
+                <h2 class="font-heading text-ink text-[24px] leading-[34px] font-semibold mb-4">Onde checar a reputação</h2>
+                <ul class="space-y-3">
+                  {p.reputacao.map((r) => (
+                    <li class="flex gap-3">
+                      <Icon name="shield" class="w-5 h-5 shrink-0 mt-1.5 text-brand" />
+                      {r}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            <div class="mt-10">
+              <h2 class="font-heading text-ink text-[24px] leading-[34px] font-semibold mb-4">O que comparar</h2>
+              <ul class="space-y-3">
+                {['Taxa de administração e fundo de reserva', 'Seguro e reajuste da carta', 'Regras de lance e histórico de contemplações', 'Autorização da administradora no Banco Central'].map((it) => (
+                  <li class="flex gap-3">
+                    <Icon name="check" class="w-5 h-5 shrink-0 mt-1.5 text-brand" />
+                    {it}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <aside class="bg-soft rounded-[8px] p-8 text-[15px] leading-[26px]">
+            <p class="font-heading text-ink text-[20px] font-semibold mb-3">Aviso</p>
+            <p>
+              Conteúdo informativo e independente. A Turbo Consórcios não fala em nome de {p.marca ?? 'marcas de terceiros'} e
+              as marcas citadas pertencem aos seus titulares.
+            </p>
+          </aside>
+        </div>
+      </section>
+    )
+  }
+
+  {/* Introdução com a dor e a intenção da busca */}
+  {
+    !inst && !ehMarca && !ehMarcaTipo && (p.gancho || p.intencao) && (
+      <section class="section-y bg-white">
+        <div class="container-x grid gap-12 lg:grid-cols-[3fr_2fr] items-center">
+          <div>
+            {p.gancho && <SectionTitle tagline={p.nome} titulo={p.gancho} class="!mb-6" />}
+            {p.intencao && <p class="text-[17px] leading-[30px]">Esta página é para quem {minusculaInicial(p.intencao)}.</p>}
+            {p.medo && (
+              <p class="mt-4">
+                Se a sua dúvida é “{p.medo.toLowerCase()}”, você está no lugar certo: aqui explicamos sem enrolação e sem
+                prometer o que o consórcio não entrega.
+              </p>
+            )}
+            <a href="#simular" class="thm-btn mt-8">
+              {ctaTexto}
+              <Icon name="arrowRight" class="w-4 h-4" />
+            </a>
+          </div>
+          {p.frase && (
+            <figure class="relative bg-ink rounded-[8px] p-9 overflow-hidden">
+              <span class="absolute -right-8 -top-8 w-32 h-32 rounded-full bg-brand/30" aria-hidden="true" />
+              <Icon name="quote" class="relative w-10 h-10 text-brand" />
+              <blockquote class="relative font-heading text-white text-[24px] leading-[34px] font-semibold mt-4">“{p.frase}”</blockquote>
+              <figcaption class="relative text-white/60 text-[14px] mt-3">Se você já pensou isso, vamos conversar.</figcaption>
+            </figure>
+          )}
+        </div>
+      </section>
+    )
+  }
+
+  {/* Como funciona em 3 passos */}
+  {
+    mostraPassos && (
+      <section class="section-y bg-soft">
+        <div class="container-x">
+          <SectionTitle tagline="Como funciona" titulo="Três passos até a sua carta de crédito" centro />
+          <ol class="grid gap-[30px] md:grid-cols-3">
+            {comoFunciona.map((s, i) => (
+              <li class="relative bg-white shadow-card rounded-[8px] p-8">
+                <span class="absolute top-6 right-7 font-heading text-[48px] leading-none font-bold text-ink/10">{String(i + 1).padStart(2, '0')}</span>
+                <span class="w-12 h-12 rounded bg-brand text-white flex items-center justify-center mb-5">
+                  <Icon name="check" class="w-6 h-6" />
+                </span>
+                <h3 class="font-heading text-ink text-[22px] leading-[32px] font-semibold mb-2">{s.titulo}</h3>
+                <p class="text-[15px] leading-[26px]">{s.texto}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+    )
+  }
+
+  {/* Páginas filhas (hubs e páginas pai) */}
+  {
+    grupos.size > 0 && (
+      <section class="section-y bg-white">
+        <div class="container-x space-y-[60px]">
+          {[...grupos].map(([secao, itens]) => (
+            <div id={ancora(secao)}>
+              <SectionTitle tagline={p.nome} titulo={secao} class="!mb-8" />
+              <ul class="grid gap-[20px] sm:grid-cols-2 lg:grid-cols-3">
+                {itens.map((f) => (
+                  <li>
+                    <a
+                      href={f.url}
+                      class="group flex items-center justify-between gap-4 h-full bg-white shadow-card border border-transparent rounded-[8px] px-6 py-5 transition-all duration-500 hover:border-brand hover:-translate-y-1"
+                    >
+                      <span class="font-heading text-ink text-[18px] leading-[26px] font-semibold group-hover:text-brand transition-colors">{f.nome}</span>
+                      <span class="w-9 h-9 shrink-0 rounded-full bg-soft flex items-center justify-center transition-colors group-hover:bg-brand group-hover:text-white">
+                        <Icon name="arrowRight" class="w-4 h-4" />
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  {/* Consórcio x financiamento */}
+  {
+    mostraComparacao && (
+      <section class="section-y bg-white">
+        <div class="container-x max-w-[900px]">
+          <SectionTitle tagline="Comparação" titulo="Consórcio ou financiamento?" centro />
+          <div class="overflow-x-auto rounded-[8px] shadow-card">
+            <table class="w-full text-left text-[15px] leading-6">
+              <thead class="bg-ink text-white font-heading">
+                <tr>
+                  <th class="px-5 py-4 font-semibold" />
+                  <th class="px-5 py-4 font-semibold">Consórcio</th>
+                  <th class="px-5 py-4 font-semibold">Financiamento</th>
+                </tr>
+              </thead>
+              <tbody>
+                {comparacaoFinanciamento.map((l, i) => (
+                  <tr class:list={[i % 2 === 1 && 'bg-soft']}>
+                    <th class="px-5 py-4 font-heading text-ink font-semibold">{l.item}</th>
+                    <td class="px-5 py-4">{l.consorcio}</td>
+                    <td class="px-5 py-4">{l.alternativa}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {/* Objeção principal da persona */}
+  {
+    p.objecao && resposta && (
+      <section class="bg-ink py-[70px] lg:py-[90px]">
+        <div class="container-x grid gap-8 lg:grid-cols-[2fr_3fr] items-center">
+          <div>
+            <span class="section-tagline ml-14 section-tagline-left">A dúvida mais comum</span>
+            <p class="font-heading text-white text-[28px] leading-[38px] lg:text-[34px] lg:leading-[44px] font-semibold mt-4">“{p.objecao}”</p>
+          </div>
+          <p class="text-white/80 text-[17px] leading-[30px] lg:border-l lg:border-white/15 lg:pl-10">{resposta}</p>
+        </div>
+      </section>
+    )
+  }
+
+  {/* Links do mesmo silo */}
+  {
+    (irmas.length > 0 || pai) && grupos.size === 0 && !inst && (
+      <section class="section-y bg-white">
+        <div class="container-x">
+          <SectionTitle tagline="Continue navegando" titulo="Veja também" />
+          <ul class="grid gap-[20px] sm:grid-cols-2 lg:grid-cols-3">
+            {[...(pai && pai.url !== '/' ? [pai] : []), ...(hubRelacionado && hubRelacionado !== pai ? [hubRelacionado] : []), ...irmas].map((f) => (
+              <li>
+                <a href={f.url} class="group flex items-center justify-between gap-4 h-full bg-soft rounded-[8px] px-6 py-5 hover:bg-ink transition-colors">
+                  <span class="font-heading text-ink text-[17px] leading-[26px] font-semibold group-hover:text-white transition-colors">{f.nome}</span>
+                  <Icon name="arrowRight" class="w-4 h-4 shrink-0 text-brand" />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )
+  }
+
+  {p.faq && p.faq.length > 0 && <FaqLista perguntas={p.faq} schema={p.indexar} />}
+
+  {
+    (!inst || p.url === '/contato/' || p.url === '/area-do-cliente/' || p.url === '/como-funciona/') && (
+      <ContactCta
+        titulo={ehParceria ? 'Fale com a gente sobre parceria' : 'Peça sua simulação gratuita'}
+        texto={
+          ehParceria
+            ? 'Deixe seu nome e WhatsApp e explicamos os modelos de parceria.'
+            : 'Conte o seu objetivo e a parcela que cabe no seu orçamento. Devolvemos um comparativo entre administradoras, sem compromisso.'
+        }
+        cta={ctaTexto}
+      />
+    )
+  }
+</BaseLayout>

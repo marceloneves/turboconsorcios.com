@@ -1,169 +1,213 @@
 ---
 import Icon from './Icon.astro';
+import Logo from './Logo.astro';
 import { site, whatsappUrl } from '../data/site';
-import { consorciosDestaque } from '../data/consorcios';
-import { estadosPorRegiao } from '../data/estados';
+import { menuTopo, menuPrincipal, menuDestaque } from '../data/navegacao';
 
-const links = [
-  { href: '/', rotulo: 'Início' },
-  { href: '/sobre', rotulo: 'Sobre Nós' },
-  { href: '/blog', rotulo: 'Blog' },
-  { href: '/contato', rotulo: 'Contato' },
-];
 const path = Astro.url.pathname;
+const ativo = (g: (typeof menuPrincipal)[number]) =>
+  path.startsWith(g.url) || g.colunas.some((c) => path.startsWith(c.url) || c.links.some((l) => l.url === path));
 ---
 
-<div class="bg-accent-700 text-white text-center py-1.5 px-2 sm:py-2 sm:px-4">
-  <p class="text-[10px] sm:text-xs font-bold uppercase tracking-[1px] sm:tracking-[2px] whitespace-nowrap">
-    Maior Portal de Consórcios do Brasil
-  </p>
-</div>
-
-<header class="bg-white sticky top-0 z-50 border-b border-primary-100">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-    <a class="flex items-center gap-3.5" aria-label={`${site.nome} — Página Inicial`} href="/">
-      <span class="w-11 h-11 bg-accent flex items-center justify-center shrink-0">
-        <Icon name="zap" class="w-6 h-6 text-white" />
-      </span>
-      <span class="hidden sm:flex flex-col leading-none">
-        <span class="font-heading font-extrabold text-xl tracking-[3px] text-primary-900 uppercase">{site.marca}</span>
-        <span class="font-heading font-normal text-xs tracking-[2px] text-accent mt-0.5">{site.submarca}</span>
-      </span>
-    </a>
-
-    <nav class="hidden lg:flex items-center gap-6" aria-label="Principal">
-      <a class="text-sm font-medium text-primary-900 hover:text-accent-600 transition-colors" href="/">Início</a>
-      <a class="text-sm font-medium text-primary-900 hover:text-accent-600 transition-colors" href="/sobre">Sobre Nós</a>
-
-      <div class="relative group">
-        <button
-          class="text-sm font-medium text-primary-900 hover:text-accent-600 transition-colors flex items-center gap-1 py-2"
-          aria-haspopup="true"
-        >
-          Consórcios<Icon name="chevronDown" class="w-4 h-4" />
-        </button>
-        <div
-          class="absolute left-0 top-full w-72 bg-white border border-primary-100 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"
-        >
-          <ul class="py-2">
-            {
-              consorciosDestaque.map((c) => (
-                <li>
-                  <a
-                    class="block px-5 py-2.5 text-sm text-primary-800 hover:bg-primary-50 hover:text-accent-600 transition-colors"
-                    href={`/${c.slug}`}
-                  >
-                    {c.nome}
-                  </a>
-                </li>
-              ))
-            }
-            <li class="border-t border-primary-100 mt-2 pt-2">
-              <a
-                class="block px-5 py-2.5 text-xs uppercase tracking-wider font-semibold text-accent-700 hover:bg-primary-50"
-                href="/mapa-do-site">Ver todas as modalidades →</a
-              >
+<header class="relative z-[99]">
+  <!-- Barra superior (main-menu-two__top) -->
+  <div class="hidden md:block bg-ink text-white/80 text-[14px]">
+    <div class="container-x flex items-center justify-between gap-6 py-2.5">
+      <ul class="flex items-center gap-7">
+        <li class="flex items-center gap-2">
+          <Icon name="mail" class="w-4 h-4 text-brand" />
+          <a href={`mailto:${site.email}`} class="hover:text-white">{site.email}</a>
+        </li>
+        <li class="hidden lg:flex items-center gap-2">
+          <Icon name="phone" class="w-4 h-4 text-brand" />
+          <a href={site.telefoneLink} class="hover:text-white">{site.telefone}</a>
+        </li>
+      </ul>
+      <ul class="flex items-center gap-6">
+        {
+          menuTopo.map((l) => (
+            <li>
+              <a href={l.url} class="hover:text-white">
+                {l.rotulo}
+              </a>
             </li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="relative group">
-        <button
-          class="text-sm font-medium text-primary-900 hover:text-accent-600 transition-colors flex items-center gap-1 py-2"
-          aria-haspopup="true"
-        >
-          Localidades<Icon name="chevronDown" class="w-4 h-4" />
-        </button>
-        <div
-          class="absolute left-1/2 -translate-x-1/2 top-full w-[46rem] bg-white border border-primary-100 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 p-6"
-        >
-          <div class="grid grid-cols-5 gap-5">
-            {
-              estadosPorRegiao.map((g) => (
-                <div>
-                  <p class="text-[11px] uppercase tracking-[0.15em] font-semibold text-accent-700 mb-3">{g.regiao}</p>
-                  <ul class="space-y-1.5">
-                    {g.estados.map((e) => (
-                      <li>
-                        <a
-                          class="text-sm text-primary-800 hover:text-accent-600 transition-colors"
-                          href={`/consorcio-em-${e.slug}`}
-                        >
-                          {e.nome}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))
-            }
-          </div>
-        </div>
-      </div>
-
-      <a class="text-sm font-medium text-primary-900 hover:text-accent-600 transition-colors" href="/blog">Blog</a>
-      <a class="text-sm font-medium text-primary-900 hover:text-accent-600 transition-colors" href="/contato">Contato</a>
-    </nav>
-
-    <div class="flex items-center gap-4">
-      <a href={site.telefoneLink} class="hidden md:flex items-center gap-2 text-sm font-semibold text-primary-900">
-        <Icon name="phone" class="w-4 h-4 text-accent" />{site.telefone}
-      </a>
-      <a class="btn-primary hidden lg:inline-block" href={whatsappUrl} target="_blank" rel="noopener noreferrer"
-        >Simule Grátis</a
-      >
-      <button id="menu-toggle" class="lg:hidden text-primary-900 p-1" aria-label="Abrir menu" aria-expanded="false">
-        <Icon name="menu" class="w-7 h-7" />
-      </button>
+          ))
+        }
+        <li>
+          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-white font-semibold hover:text-brand-300">
+            <Icon name="whatsapp" class="w-4 h-4" />WhatsApp
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
 
-  <div id="menu-mobile" class="hidden lg:hidden border-t border-primary-100 bg-white">
-    <ul class="px-6 py-4 space-y-1">
-      {
-        links.map((l) => (
-          <li>
-            <a
-              class:list={[
-                'block py-2.5 text-sm font-medium transition-colors',
-                path === l.href ? 'text-accent-600' : 'text-primary-900 hover:text-accent-600',
-              ]}
-              href={l.href}
-            >
-              {l.rotulo}
-            </a>
-          </li>
-        ))
-      }
-      <li class="pt-2 border-t border-primary-100">
-        <p class="text-[11px] uppercase tracking-[0.15em] font-semibold text-accent-700 py-2">Consórcios</p>
-        <ul>
+  <!-- Menu principal com mega menus -->
+  <div id="barra-principal" class="relative bg-white border-b border-line z-[99] w-full">
+    <div class="container-x flex items-center justify-between gap-6 py-4 xl:py-0">
+      <Logo />
+
+      <nav class="hidden xl:block" aria-label="Principal">
+        <ul class="flex items-center gap-6">
           {
-            consorciosDestaque.map((c) => (
-              <li>
-                <a class="block py-2 text-sm text-primary-800 hover:text-accent-600" href={`/${c.slug}`}>
-                  {c.nome}
+            menuPrincipal.map((g) => (
+              <li class="group">
+                <a
+                  href={g.url}
+                  aria-haspopup="true"
+                  class:list={[
+                    'flex items-center gap-1 py-[34px] whitespace-nowrap font-heading text-[15px] font-semibold transition-colors',
+                    ativo(g) ? 'text-brand' : 'text-ink hover:text-brand',
+                  ]}
+                >
+                  {g.rotulo}
+                  <Icon name="chevronDown" class="w-3.5 h-3.5" />
                 </a>
+                <div class="absolute left-0 right-0 top-full bg-white shadow-card border-t-2 border-brand opacity-0 invisible translate-y-3 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 transition-all duration-300">
+                  <div class="container-x py-8 grid grid-cols-4 gap-x-8 gap-y-7 max-h-[70vh] overflow-y-auto">
+                    {g.colunas.map((c) => (
+                      <div>
+                        <p class="font-heading text-[14px] uppercase tracking-[0.08em] font-semibold text-brand mb-2.5">{c.titulo}</p>
+                        <ul class="space-y-0.5">
+                          {c.links.map((l) => (
+                            <li>
+                              <a href={l.url} class="block text-[14px] leading-6 text-ink hover:text-brand">
+                                {l.rotulo}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </li>
             ))
           }
         </ul>
-      </li>
-      <li class="pt-3">
-        <a class="btn-primary w-full text-center" href={whatsappUrl} target="_blank" rel="noopener noreferrer"
-          >Simule Grátis</a
+      </nav>
+
+      <div class="flex items-center gap-4">
+        {
+          menuDestaque && (
+            <a href={menuDestaque.url} class="thm-btn hidden sm:inline-flex whitespace-nowrap">
+              {menuDestaque.rotulo}
+            </a>
+          )
+        }
+        <button
+          id="menu-toggle"
+          type="button"
+          class="xl:hidden w-11 h-11 flex items-center justify-center text-ink"
+          aria-label="Abrir menu"
+          aria-controls="menu-mobile"
+          aria-expanded="false"
         >
-      </li>
-    </ul>
+          <Icon name="menu" class="w-7 h-7" />
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="barra-espaco" class="hidden"></div>
+
+  <!-- Menu mobile: acordeão na mesma ordem do menu principal -->
+  <div id="menu-mobile" class="fixed inset-0 z-[1000] invisible" aria-hidden="true">
+    <div data-fechar class="absolute inset-0 bg-ink-950/70 opacity-0 transition-opacity duration-500"></div>
+    <div class="painel absolute top-0 left-0 bottom-0 w-[340px] max-w-[88vw] bg-ink-950 text-white overflow-y-auto -translate-x-full transition-transform duration-500 px-6 py-7">
+      <div class="flex items-center justify-between mb-8">
+        <Logo claro />
+        <button data-fechar type="button" class="w-10 h-10 flex items-center justify-center" aria-label="Fechar menu">
+          <Icon name="x" class="w-6 h-6" />
+        </button>
+      </div>
+      <ul class="divide-y divide-white/10 border-y border-white/10">
+        {
+          menuPrincipal.map((g) => (
+            <li>
+              <details class="accordion">
+                <summary class="flex items-center justify-between py-3 font-heading text-[15px] font-semibold">
+                  {g.rotulo}
+                  <span class="accordion-icon w-7 h-7 rounded bg-brand flex items-center justify-center">
+                    <Icon name="plus" class="w-4 h-4" />
+                  </span>
+                </summary>
+                <div class="pb-4 pl-3 space-y-4">
+                  <a href={g.url} class="block text-[14px] font-bold text-brand-300">
+                    Ver tudo em {g.rotulo} →
+                  </a>
+                  {g.colunas.map((c) => (
+                    <div>
+                      <p class="text-[12px] uppercase tracking-[0.08em] font-semibold text-white/50 mb-1">{c.titulo}</p>
+                      <ul>
+                        {c.links.map((l) => (
+                          <li>
+                            <a href={l.url} class="block py-1 text-[14px] leading-5 text-white/85 hover:text-brand-300">
+                              {l.rotulo}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </details>
+            </li>
+          ))
+        }
+      </ul>
+      <ul class="mt-6 space-y-2 text-[14px]">
+        {menuTopo.map((l) => <li><a href={l.url} class="hover:text-brand-300">{l.rotulo}</a></li>)}
+      </ul>
+    </div>
+  </div>
+
+  <!-- Barra fixa inferior no celular: Simular e WhatsApp -->
+  <div class="md:hidden fixed inset-x-0 bottom-0 z-[95] grid grid-cols-2 bg-white border-t border-line">
+    {
+      menuDestaque && (
+        <a href={menuDestaque.url} class="flex items-center justify-center gap-2 py-3.5 bg-brand text-white font-bold text-[15px]">
+          {menuDestaque.rotulo}
+        </a>
+      )
+    }
+    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 py-3.5 bg-[#25d366] text-white font-bold text-[15px]">
+      <Icon name="whatsapp" class="w-5 h-5" />WhatsApp
+    </a>
   </div>
 </header>
 
 <script>
-  const toggle = document.getElementById('menu-toggle');
-  const menu = document.getElementById('menu-mobile');
-  toggle?.addEventListener('click', () => {
-    const aberto = menu?.classList.toggle('hidden') === false;
+  // Menu mobile
+  const menu = document.getElementById('menu-mobile')!;
+  const toggle = document.getElementById('menu-toggle')!;
+  const painel = menu.querySelector<HTMLElement>('.painel')!;
+  const fundo = menu.querySelector<HTMLElement>('div[data-fechar]')!;
+  const abrir = (aberto: boolean) => {
+    menu.classList.toggle('invisible', !aberto);
+    menu.setAttribute('aria-hidden', String(!aberto));
+    painel.classList.toggle('-translate-x-full', !aberto);
+    fundo.classList.toggle('opacity-0', !aberto);
     toggle.setAttribute('aria-expanded', String(aberto));
+    document.body.style.overflow = aberto ? 'hidden' : '';
+  };
+  toggle.addEventListener('click', () => abrir(true));
+  menu.querySelectorAll('[data-fechar]').forEach((el) => el.addEventListener('click', () => abrir(false)));
+  document.addEventListener('keydown', (e) => e.key === 'Escape' && abrir(false));
+
+  // Header fixo ao rolar (stricky-header)
+  const barra = document.getElementById('barra-principal')!;
+  const espaco = document.getElementById('barra-espaco')!;
+  let limite = barra.offsetTop + barra.offsetHeight + 120;
+  const aoRolar = () => {
+    const fixo = window.scrollY > limite;
+    if (fixo === barra.classList.contains('header-stuck')) return;
+    espaco.style.height = fixo ? `${barra.offsetHeight}px` : '';
+    espaco.classList.toggle('hidden', !fixo);
+    barra.classList.toggle('header-stuck', fixo);
+  };
+  window.addEventListener('scroll', aoRolar, { passive: true });
+  window.addEventListener('resize', () => {
+    if (!barra.classList.contains('header-stuck')) limite = barra.offsetTop + barra.offsetHeight + 120;
   });
+  aoRolar();
 </script>

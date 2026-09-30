@@ -1,0 +1,1460 @@
+{
+ "topo": [
+  {
+   "rotulo": "Sobre a Turbo",
+   "url": "/sobre/"
+  },
+  {
+   "rotulo": "Seja parceiro",
+   "url": "/parceiros/"
+  },
+  {
+   "rotulo": "Área do cliente",
+   "url": "/area-do-cliente/"
+  },
+  {
+   "rotulo": "Contato",
+   "url": "/contato/"
+  }
+ ],
+ "principal": [
+  {
+   "rotulo": "Imóveis",
+   "url": "/consorcio-de-imoveis/",
+   "colunas": [
+    {
+     "titulo": "Residencial",
+     "url": "/consorcio-de-imoveis/",
+     "links": [
+      {
+       "rotulo": "Consórcio de imóvel residencial",
+       "url": "/consorcio-de-imoveis/imovel-residencial/"
+      },
+      {
+       "rotulo": "Consórcio de casa própria",
+       "url": "/consorcio-de-imoveis/casa-propria/"
+      },
+      {
+       "rotulo": "Consórcio de apartamento",
+       "url": "/consorcio-de-imoveis/apartamento/"
+      },
+      {
+       "rotulo": "Consórcio de primeiro imóvel",
+       "url": "/consorcio-de-imoveis/primeiro-imovel/"
+      },
+      {
+       "rotulo": "Consórcio de imóvel novo",
+       "url": "/consorcio-de-imoveis/imovel-novo/"
+      }
+     ]
+    },
+    {
+     "titulo": "Comercial",
+     "url": "/consorcio-de-imoveis/",
+     "links": [
+      {
+       "rotulo": "Consórcio de imóvel comercial",
+       "url": "/consorcio-de-imoveis/imovel-comercial/"
+      },
+      {
+       "rotulo": "Consórcio de sala comercial",
+       "url": "/consorcio-de-imoveis/sala-comercial/"
+      },
+      {
+       "rotulo": "Consórcio de loja",
+       "url": "/consorcio-de-imoveis/loja/"
+      },
+      {
+       "rotulo": "Consórcio de consultório",
+       "url": "/consorcio-de-imoveis/consultorio/"
+      },
+      {
+       "rotulo": "Consórcio de imóvel para sede de empresa",
+       "url": "/consorcio-de-imoveis/imovel-para-sede-de-empresa/"
+      }
+     ]
+    },
+    {
+     "titulo": "Rural e terrenos",
+     "url": "/consorcio-de-imoveis/",
+     "links": [
+      {
+       "rotulo": "Consórcio de terreno",
+       "url": "/consorcio-de-imoveis/terreno/"
+      },
+      {
+       "rotulo": "Consórcio de imóvel rural",
+       "url": "/consorcio-de-imoveis/imovel-rural/"
+      },
+      {
+       "rotulo": "Consórcio de lote em condomínio",
+       "url": "/consorcio-de-imoveis/lote-em-condominio/"
+      },
+      {
+       "rotulo": "Consórcio de sítio",
+       "url": "/consorcio-de-imoveis/sitio/"
+      },
+      {
+       "rotulo": "Consórcio de chácara",
+       "url": "/consorcio-de-imoveis/chacara/"
+      }
+     ]
+    },
+    {
+     "titulo": "Construção e reforma",
+     "url": "/consorcio-de-imoveis/",
+     "links": [
+      {
+       "rotulo": "Consórcio para construção",
+       "url": "/consorcio-de-imoveis/construcao/"
+      },
+      {
+       "rotulo": "Consórcio para reforma",
+       "url": "/consorcio-de-imoveis/reforma/"
+      },
+      {
+       "rotulo": "Consórcio para construção em terreno próprio",
+       "url": "/consorcio-de-imoveis/construcao-em-terreno-proprio/"
+      },
+      {
+       "rotulo": "Consórcio para ampliação de imóvel",
+       "url": "/consorcio-de-imoveis/ampliacao-de-imovel/"
+      }
+     ]
+    },
+    {
+     "titulo": "Investimento imobiliário",
+     "url": "/consorcio-de-imoveis/",
+     "links": [
+      {
+       "rotulo": "Consórcio de imóvel para aluguel",
+       "url": "/consorcio-de-imoveis/imovel-para-aluguel/"
+      },
+      {
+       "rotulo": "Consórcio de imóvel para investimento",
+       "url": "/consorcio-de-imoveis/imovel-para-investimento/"
+      },
+      {
+       "rotulo": "Consórcio de imóvel para renda na aposentadoria",
+       "url": "/consorcio-de-imoveis/imovel-para-renda-na-aposentadoria/"
+      },
+      {
+       "rotulo": "Consórcio de imóvel para os filhos",
+       "url": "/consorcio-de-imoveis/imovel-para-os-filhos/"
+      }
+     ]
+    },
+    {
+     "titulo": "Uso da carta",
+     "url": "/consorcio-de-imoveis/",
+     "links": [
+      {
+       "rotulo": "Consórcio de imóvel com FGTS",
+       "url": "/consorcio-de-imoveis/imovel-com-fgts/"
+      },
+      {
+       "rotulo": "Consórcio para quitação de financiamento imobiliário",
+       "url": "/consorcio-de-imoveis/quitacao-de-financiamento-imobiliario/"
+      }
+     ]
+    },
+    {
+     "titulo": "Por valor",
+     "url": "/consorcio-de-imoveis/",
+     "links": [
+      {
+       "rotulo": "Consórcio de imóvel de 100 mil",
+       "url": "/consorcio-de-imoveis/100-mil/"
+      },
+      {
+       "rotulo": "Consórcio de imóvel de 150 mil",
+       "url": "/consorcio-de-imoveis/150-mil/"
+      },
+      {
+       "rotulo": "Consórcio de imóvel de 200 mil",
+       "url": "/consorcio-de-imoveis/200-mil/"
+      },
+      {
+       "rotulo": "Consórcio de imóvel de 250 mil",
+       "url": "/consorcio-de-imoveis/250-mil/"
+      },
+      {
+       "rotulo": "Consórcio de imóvel de 300 mil",
+       "url": "/consorcio-de-imoveis/300-mil/"
+      },
+      {
+       "rotulo": "Consórcio de imóvel de 400 mil",
+       "url": "/consorcio-de-imoveis/400-mil/"
+      },
+      {
+       "rotulo": "Consórcio de imóvel de 500 mil",
+       "url": "/consorcio-de-imoveis/500-mil/"
+      },
+      {
+       "rotulo": "Consórcio de imóvel de 600 mil",
+       "url": "/consorcio-de-imoveis/600-mil/"
+      },
+      {
+       "rotulo": "Consórcio de imóvel de 800 mil",
+       "url": "/consorcio-de-imoveis/800-mil/"
+      },
+      {
+       "rotulo": "Consórcio de imóvel de 1 milhão",
+       "url": "/consorcio-de-imoveis/1-milhao/"
+      }
+     ]
+    },
+    {
+     "titulo": "Por administradora",
+     "url": "/administradoras/",
+     "links": [
+      {
+       "rotulo": "Consórcio Itaú imóvel",
+       "url": "/administradoras/itau/imovel/"
+      },
+      {
+       "rotulo": "Consórcio Bradesco imóvel",
+       "url": "/administradoras/bradesco/imovel/"
+      },
+      {
+       "rotulo": "Consórcio Banco do Brasil imóvel",
+       "url": "/administradoras/banco-do-brasil/imovel/"
+      },
+      {
+       "rotulo": "Consórcio Caixa imóvel",
+       "url": "/administradoras/caixa/imovel/"
+      },
+      {
+       "rotulo": "Consórcio Santander imóvel",
+       "url": "/administradoras/santander/imovel/"
+      },
+      {
+       "rotulo": "Consórcio Sicredi imóvel",
+       "url": "/administradoras/sicredi/imovel/"
+      },
+      {
+       "rotulo": "Consórcio Sicoob imóvel",
+       "url": "/administradoras/sicoob/imovel/"
+      },
+      {
+       "rotulo": "Consórcio Ademicon imóvel",
+       "url": "/administradoras/ademicon/imovel/"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "rotulo": "Veículos",
+   "url": "/consorcio-de-carros/",
+   "colunas": [
+    {
+     "titulo": "Carros",
+     "url": "/consorcio-de-carros/",
+     "links": [
+      {
+       "rotulo": "Consórcio de carro 0km",
+       "url": "/consorcio-de-carros/carro-0km/"
+      },
+      {
+       "rotulo": "Consórcio de carro seminovo",
+       "url": "/consorcio-de-carros/carro-seminovo/"
+      },
+      {
+       "rotulo": "Consórcio de carro popular",
+       "url": "/consorcio-de-carros/carro-popular/"
+      },
+      {
+       "rotulo": "Consórcio de carro para aplicativo",
+       "url": "/consorcio-de-carros/carro-para-aplicativo/"
+      },
+      {
+       "rotulo": "Consórcio de carro usado",
+       "url": "/consorcio-de-carros/carro-usado/"
+      }
+     ]
+    },
+    {
+     "titulo": "Motos",
+     "url": "/consorcio-de-motos/",
+     "links": [
+      {
+       "rotulo": "Consórcio de moto 0km",
+       "url": "/consorcio-de-motos/moto-0km/"
+      },
+      {
+       "rotulo": "Consórcio de moto de baixa cilindrada",
+       "url": "/consorcio-de-motos/moto-de-baixa-cilindrada/"
+      },
+      {
+       "rotulo": "Consórcio de moto para entregador",
+       "url": "/consorcio-de-motos/moto-para-entregador/"
+      },
+      {
+       "rotulo": "Consórcio de moto usada",
+       "url": "/consorcio-de-motos/moto-usada/"
+      },
+      {
+       "rotulo": "Consórcio de moto de média cilindrada",
+       "url": "/consorcio-de-motos/moto-de-media-cilindrada/"
+      }
+     ]
+    },
+    {
+     "titulo": "Pesados",
+     "url": "/consorcio-de-pesados/",
+     "links": [
+      {
+       "rotulo": "Consórcio de caminhão 0km",
+       "url": "/consorcio-de-pesados/caminhao-0km/"
+      },
+      {
+       "rotulo": "Consórcio de caminhão seminovo",
+       "url": "/consorcio-de-pesados/caminhao-seminovo/"
+      },
+      {
+       "rotulo": "Consórcio de cavalo mecânico",
+       "url": "/consorcio-de-pesados/cavalo-mecanico/"
+      },
+      {
+       "rotulo": "Consórcio de carreta",
+       "url": "/consorcio-de-pesados/carreta/"
+      },
+      {
+       "rotulo": "Consórcio de ônibus",
+       "url": "/consorcio-de-pesados/onibus/"
+      }
+     ]
+    },
+    {
+     "titulo": "Máquinas e Agro",
+     "url": "/consorcio-de-maquinas/",
+     "links": [
+      {
+       "rotulo": "Consórcio de trator",
+       "url": "/consorcio-de-maquinas/trator/"
+      },
+      {
+       "rotulo": "Consórcio de colheitadeira",
+       "url": "/consorcio-de-maquinas/colheitadeira/"
+      },
+      {
+       "rotulo": "Consórcio para produtor rural",
+       "url": "/consorcio-de-maquinas/produtor-rural/"
+      },
+      {
+       "rotulo": "Consórcio de plantadeira",
+       "url": "/consorcio-de-maquinas/plantadeira/"
+      },
+      {
+       "rotulo": "Consórcio de pulverizador",
+       "url": "/consorcio-de-maquinas/pulverizador/"
+      }
+     ]
+    },
+    {
+     "titulo": "Náutico e Aéreo",
+     "url": "/consorcio-nautico-e-aereo/",
+     "links": [
+      {
+       "rotulo": "Consórcio de lancha",
+       "url": "/consorcio-nautico-e-aereo/lancha/"
+      },
+      {
+       "rotulo": "Consórcio de veleiro",
+       "url": "/consorcio-nautico-e-aereo/veleiro/"
+      },
+      {
+       "rotulo": "Consórcio de jet ski",
+       "url": "/consorcio-nautico-e-aereo/jet-ski/"
+      },
+      {
+       "rotulo": "Consórcio de motor de popa",
+       "url": "/consorcio-nautico-e-aereo/motor-de-popa/"
+      },
+      {
+       "rotulo": "Consórcio de embarcação de pesca",
+       "url": "/consorcio-nautico-e-aereo/embarcacao-de-pesca/"
+      }
+     ]
+    },
+    {
+     "titulo": "Por valor",
+     "url": "/consorcio-de-carros/",
+     "links": [
+      {
+       "rotulo": "Consórcio de carro de 40 mil",
+       "url": "/consorcio-de-carros/40-mil/"
+      },
+      {
+       "rotulo": "Consórcio de carro de 50 mil",
+       "url": "/consorcio-de-carros/50-mil/"
+      },
+      {
+       "rotulo": "Consórcio de carro de 60 mil",
+       "url": "/consorcio-de-carros/60-mil/"
+      },
+      {
+       "rotulo": "Consórcio de carro de 80 mil",
+       "url": "/consorcio-de-carros/80-mil/"
+      },
+      {
+       "rotulo": "Consórcio de carro de 100 mil",
+       "url": "/consorcio-de-carros/100-mil/"
+      },
+      {
+       "rotulo": "Consórcio de carro de 120 mil",
+       "url": "/consorcio-de-carros/120-mil/"
+      },
+      {
+       "rotulo": "Consórcio de carro de 150 mil",
+       "url": "/consorcio-de-carros/150-mil/"
+      },
+      {
+       "rotulo": "Consórcio de carro de 200 mil",
+       "url": "/consorcio-de-carros/200-mil/"
+      }
+     ]
+    },
+    {
+     "titulo": "Por administradora",
+     "url": "/administradoras/",
+     "links": [
+      {
+       "rotulo": "Consórcio Volkswagen carro",
+       "url": "/administradoras/volkswagen/carro/"
+      },
+      {
+       "rotulo": "Consórcio Chevrolet carro",
+       "url": "/administradoras/chevrolet/carro/"
+      },
+      {
+       "rotulo": "Consórcio Honda carro",
+       "url": "/administradoras/honda/carro/"
+      },
+      {
+       "rotulo": "Consórcio Itaú carro",
+       "url": "/administradoras/itau/carro/"
+      },
+      {
+       "rotulo": "Consórcio Honda moto",
+       "url": "/administradoras/honda/moto/"
+      },
+      {
+       "rotulo": "Consórcio Yamaha moto",
+       "url": "/administradoras/yamaha/moto/"
+      },
+      {
+       "rotulo": "Consórcio Itaú moto",
+       "url": "/administradoras/itau/moto/"
+      },
+      {
+       "rotulo": "Consórcio Bradesco moto",
+       "url": "/administradoras/bradesco/moto/"
+      },
+      {
+       "rotulo": "Consórcio Volkswagen caminhão",
+       "url": "/administradoras/volkswagen/caminhao/"
+      },
+      {
+       "rotulo": "Consórcio Mercedes-Benz caminhão",
+       "url": "/administradoras/mercedes-benz/caminhao/"
+      },
+      {
+       "rotulo": "Consórcio Mercedes-Benz ônibus",
+       "url": "/administradoras/mercedes-benz/onibus/"
+      },
+      {
+       "rotulo": "Consórcio Volvo caminhão",
+       "url": "/administradoras/volvo/caminhao/"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "rotulo": "Bens e Serviços",
+   "url": "/consorcio-de-servicos/",
+   "colunas": [
+    {
+     "titulo": "Serviços: Educação",
+     "url": "/consorcio-de-servicos/",
+     "links": [
+      {
+       "rotulo": "Consórcio de faculdade",
+       "url": "/consorcio-de-servicos/faculdade/"
+      },
+      {
+       "rotulo": "Consórcio de intercâmbio",
+       "url": "/consorcio-de-servicos/intercambio/"
+      },
+      {
+       "rotulo": "Consórcio de pós-graduação",
+       "url": "/consorcio-de-servicos/pos-graduacao/"
+      },
+      {
+       "rotulo": "Consórcio de MBA",
+       "url": "/consorcio-de-servicos/mba/"
+      }
+     ]
+    },
+    {
+     "titulo": "Serviços: Saúde e estética",
+     "url": "/consorcio-de-servicos/",
+     "links": [
+      {
+       "rotulo": "Consórcio de cirurgia plástica",
+       "url": "/consorcio-de-servicos/cirurgia-plastica/"
+      },
+      {
+       "rotulo": "Consórcio de tratamento odontológico",
+       "url": "/consorcio-de-servicos/tratamento-odontologico/"
+      },
+      {
+       "rotulo": "Consórcio de implante dentário",
+       "url": "/consorcio-de-servicos/implante-dentario/"
+      },
+      {
+       "rotulo": "Consórcio de lente de contato dental",
+       "url": "/consorcio-de-servicos/lente-de-contato-dental/"
+      }
+     ]
+    },
+    {
+     "titulo": "Serviços: Viagens",
+     "url": "/consorcio-de-servicos/",
+     "links": [
+      {
+       "rotulo": "Consórcio de viagem",
+       "url": "/consorcio-de-servicos/viagem/"
+      },
+      {
+       "rotulo": "Consórcio de viagem internacional",
+       "url": "/consorcio-de-servicos/viagem-internacional/"
+      },
+      {
+       "rotulo": "Consórcio de lua de mel",
+       "url": "/consorcio-de-servicos/lua-de-mel/"
+      },
+      {
+       "rotulo": "Consórcio de cruzeiro",
+       "url": "/consorcio-de-servicos/cruzeiro/"
+      }
+     ]
+    },
+    {
+     "titulo": "Serviços: Eventos",
+     "url": "/consorcio-de-servicos/",
+     "links": [
+      {
+       "rotulo": "Consórcio de festa de casamento",
+       "url": "/consorcio-de-servicos/festa-de-casamento/"
+      },
+      {
+       "rotulo": "Consórcio de festa de formatura",
+       "url": "/consorcio-de-servicos/festa-de-formatura/"
+      },
+      {
+       "rotulo": "Consórcio de festa de 15 anos",
+       "url": "/consorcio-de-servicos/festa-de-15-anos/"
+      },
+      {
+       "rotulo": "Consórcio de eventos corporativos",
+       "url": "/consorcio-de-servicos/eventos-corporativos/"
+      }
+     ]
+    },
+    {
+     "titulo": "Serviços: Casa e obra",
+     "url": "/consorcio-de-servicos/",
+     "links": [
+      {
+       "rotulo": "Consórcio de reforma residencial",
+       "url": "/consorcio-de-servicos/reforma-residencial/"
+      },
+      {
+       "rotulo": "Consórcio de mão de obra para construção",
+       "url": "/consorcio-de-servicos/mao-de-obra-para-construcao/"
+      },
+      {
+       "rotulo": "Consórcio de projeto de arquitetura",
+       "url": "/consorcio-de-servicos/projeto-de-arquitetura/"
+      },
+      {
+       "rotulo": "Consórcio de decoração",
+       "url": "/consorcio-de-servicos/decoracao/"
+      }
+     ]
+    },
+    {
+     "titulo": "Bens: Tecnologia",
+     "url": "/consorcio-de-bens/",
+     "links": [
+      {
+       "rotulo": "Consórcio de smartphone",
+       "url": "/consorcio-de-bens/smartphone/"
+      },
+      {
+       "rotulo": "Consórcio de notebook",
+       "url": "/consorcio-de-bens/notebook/"
+      },
+      {
+       "rotulo": "Consórcio de computador",
+       "url": "/consorcio-de-bens/computador/"
+      },
+      {
+       "rotulo": "Consórcio de tablet",
+       "url": "/consorcio-de-bens/tablet/"
+      }
+     ]
+    },
+    {
+     "titulo": "Bens: Casa",
+     "url": "/consorcio-de-bens/",
+     "links": [
+      {
+       "rotulo": "Consórcio de móveis planejados",
+       "url": "/consorcio-de-bens/moveis-planejados/"
+      },
+      {
+       "rotulo": "Consórcio de televisão",
+       "url": "/consorcio-de-bens/televisao/"
+      },
+      {
+       "rotulo": "Consórcio de eletrodomésticos",
+       "url": "/consorcio-de-bens/eletrodomesticos/"
+      },
+      {
+       "rotulo": "Consórcio de geladeira",
+       "url": "/consorcio-de-bens/geladeira/"
+      }
+     ]
+    },
+    {
+     "titulo": "Bens: Energia",
+     "url": "/consorcio-de-bens/",
+     "links": [
+      {
+       "rotulo": "Consórcio de energia solar",
+       "url": "/consorcio-de-bens/energia-solar/"
+      },
+      {
+       "rotulo": "Consórcio de painel solar",
+       "url": "/consorcio-de-bens/painel-solar/"
+      },
+      {
+       "rotulo": "Consórcio de aquecedor solar",
+       "url": "/consorcio-de-bens/aquecedor-solar/"
+      }
+     ]
+    },
+    {
+     "titulo": "Bens: Profissionais",
+     "url": "/consorcio-de-bens/",
+     "links": [
+      {
+       "rotulo": "Consórcio de equipamento médico",
+       "url": "/consorcio-de-bens/equipamento-medico/"
+      },
+      {
+       "rotulo": "Consórcio de equipamento odontológico",
+       "url": "/consorcio-de-bens/equipamento-odontologico/"
+      },
+      {
+       "rotulo": "Consórcio de equipamento de academia",
+       "url": "/consorcio-de-bens/equipamento-de-academia/"
+      },
+      {
+       "rotulo": "Consórcio de equipamento de estética",
+       "url": "/consorcio-de-bens/equipamento-de-estetica/"
+      }
+     ]
+    },
+    {
+     "titulo": "Por administradora",
+     "url": "/administradoras/",
+     "links": [
+      {
+       "rotulo": "Consórcio Itaú serviços",
+       "url": "/administradoras/itau/servicos/"
+      },
+      {
+       "rotulo": "Consórcio Bradesco serviços",
+       "url": "/administradoras/bradesco/servicos/"
+      },
+      {
+       "rotulo": "Consórcio Banco do Brasil serviços",
+       "url": "/administradoras/banco-do-brasil/servicos/"
+      },
+      {
+       "rotulo": "Consórcio Caixa serviços",
+       "url": "/administradoras/caixa/servicos/"
+      },
+      {
+       "rotulo": "Consórcio Santander serviços",
+       "url": "/administradoras/santander/servicos/"
+      },
+      {
+       "rotulo": "Consórcio Sicredi serviços",
+       "url": "/administradoras/sicredi/servicos/"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "rotulo": "Investir",
+   "url": "/investir-com-consorcio/",
+   "colunas": [
+    {
+     "titulo": "Estratégias",
+     "url": "/investir-com-consorcio/",
+     "links": [
+      {
+       "rotulo": "Consórcio para alavancagem patrimonial",
+       "url": "/investir-com-consorcio/alavancagem-patrimonial/"
+      },
+      {
+       "rotulo": "Consórcio para renda passiva",
+       "url": "/investir-com-consorcio/renda-passiva/"
+      },
+      {
+       "rotulo": "Consórcio para aposentadoria",
+       "url": "/investir-com-consorcio/aposentadoria/"
+      },
+      {
+       "rotulo": "Consórcio para planejamento sucessório",
+       "url": "/investir-com-consorcio/planejamento-sucessorio/"
+      },
+      {
+       "rotulo": "Consórcio para holding patrimonial",
+       "url": "/investir-com-consorcio/holding-patrimonial/"
+      }
+     ]
+    },
+    {
+     "titulo": "Modalidades",
+     "url": "/investir-com-consorcio/",
+     "links": [
+      {
+       "rotulo": "Consórcio com múltiplas cotas",
+       "url": "/investir-com-consorcio/multiplas-cotas/"
+      },
+      {
+       "rotulo": "Consórcio com lance embutido",
+       "url": "/investir-com-consorcio/lance-embutido/"
+      },
+      {
+       "rotulo": "Consórcio com parcela reduzida",
+       "url": "/investir-com-consorcio/parcela-reduzida/"
+      },
+      {
+       "rotulo": "Consórcio com lance fixo",
+       "url": "/investir-com-consorcio/lance-fixo/"
+      },
+      {
+       "rotulo": "Consórcio de prazo curto",
+       "url": "/investir-com-consorcio/prazo-curto/"
+      }
+     ]
+    },
+    {
+     "titulo": "Cartas contempladas",
+     "url": "/cartas-contempladas/",
+     "links": [
+      {
+       "rotulo": "Carta contemplada à venda",
+       "url": "/cartas-contempladas/carta-contemplada-a-venda/"
+      },
+      {
+       "rotulo": "Comprar carta contemplada",
+       "url": "/cartas-contempladas/comprar-carta-contemplada/"
+      },
+      {
+       "rotulo": "Carta contemplada de imóvel",
+       "url": "/cartas-contempladas/carta-contemplada-de-imovel/"
+      },
+      {
+       "rotulo": "Vender carta contemplada",
+       "url": "/cartas-contempladas/vender-carta-contemplada/"
+      },
+      {
+       "rotulo": "Vender cota de consórcio",
+       "url": "/cartas-contempladas/vender-cota-de-consorcio/"
+      },
+      {
+       "rotulo": "Quero desistir do consórcio",
+       "url": "/cartas-contempladas/quero-desistir-do-consorcio/"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "rotulo": "Para Você",
+   "url": "/para-voce/",
+   "colunas": [
+    {
+     "titulo": "Momentos de vida",
+     "url": "/para-voce/",
+     "links": [
+      {
+       "rotulo": "Como sair do aluguel",
+       "url": "/para-voce/como-sair-do-aluguel/"
+      },
+      {
+       "rotulo": "Financiamento negado o que fazer",
+       "url": "/para-voce/financiamento-negado-o-que-fazer/"
+      },
+      {
+       "rotulo": "Como comprar casa sem entrada",
+       "url": "/para-voce/como-comprar-casa-sem-entrada/"
+      },
+      {
+       "rotulo": "Como construir patrimônio",
+       "url": "/para-voce/como-construir-patrimonio/"
+      },
+      {
+       "rotulo": "Como comprar o primeiro carro",
+       "url": "/para-voce/como-comprar-o-primeiro-carro/"
+      },
+      {
+       "rotulo": "Como complementar a aposentadoria",
+       "url": "/para-voce/como-complementar-a-aposentadoria/"
+      },
+      {
+       "rotulo": "Como renovar a frota sem juros",
+       "url": "/para-voce/como-renovar-a-frota-sem-juros/"
+      },
+      {
+       "rotulo": "Como comprar imóvel após o divórcio",
+       "url": "/para-voce/como-comprar-imovel-apos-o-divorcio/"
+      }
+     ]
+    },
+    {
+     "titulo": "Por perfil",
+     "url": "/para-voce/",
+     "links": [
+      {
+       "rotulo": "Consórcio para quem tem nome com restrição",
+       "url": "/para-voce/quem-tem-nome-com-restricao/"
+      },
+      {
+       "rotulo": "Consórcio para autônomos",
+       "url": "/para-voce/autonomos/"
+      },
+      {
+       "rotulo": "Consórcio para pessoa jurídica",
+       "url": "/para-voce/pessoa-juridica/"
+      },
+      {
+       "rotulo": "Consórcio para médicos",
+       "url": "/para-voce/medicos/"
+      },
+      {
+       "rotulo": "Consórcio para MEI",
+       "url": "/para-voce/mei/"
+      },
+      {
+       "rotulo": "Consórcio para pequenas empresas",
+       "url": "/para-voce/pequenas-empresas/"
+      },
+      {
+       "rotulo": "Consórcio para profissionais liberais",
+       "url": "/para-voce/profissionais-liberais/"
+      },
+      {
+       "rotulo": "Consórcio para dentistas",
+       "url": "/para-voce/dentistas/"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "rotulo": "Administradoras",
+   "url": "/administradoras/",
+   "colunas": [
+    {
+     "titulo": "Marcas principais",
+     "url": "/administradoras/",
+     "links": [
+      {
+       "rotulo": "Consórcio Itaú",
+       "url": "/administradoras/itau/"
+      },
+      {
+       "rotulo": "Consórcio Bradesco",
+       "url": "/administradoras/bradesco/"
+      },
+      {
+       "rotulo": "Consórcio Banco do Brasil",
+       "url": "/administradoras/banco-do-brasil/"
+      },
+      {
+       "rotulo": "Consórcio Caixa",
+       "url": "/administradoras/caixa/"
+      },
+      {
+       "rotulo": "Consórcio Santander",
+       "url": "/administradoras/santander/"
+      },
+      {
+       "rotulo": "Consórcio Sicredi",
+       "url": "/administradoras/sicredi/"
+      },
+      {
+       "rotulo": "Consórcio Sicoob",
+       "url": "/administradoras/sicoob/"
+      },
+      {
+       "rotulo": "Consórcio Ademicon",
+       "url": "/administradoras/ademicon/"
+      },
+      {
+       "rotulo": "Consórcio Embracon",
+       "url": "/administradoras/embracon/"
+      },
+      {
+       "rotulo": "Consórcio Rodobens",
+       "url": "/administradoras/rodobens/"
+      },
+      {
+       "rotulo": "Consórcio Porto Seguro",
+       "url": "/administradoras/porto-seguro/"
+      },
+      {
+       "rotulo": "Consórcio Canopus",
+       "url": "/administradoras/canopus/"
+      },
+      {
+       "rotulo": "Consórcio Disal",
+       "url": "/administradoras/disal/"
+      },
+      {
+       "rotulo": "Consórcio Servopa",
+       "url": "/administradoras/servopa/"
+      },
+      {
+       "rotulo": "Consórcio Magalu",
+       "url": "/administradoras/magalu/"
+      },
+      {
+       "rotulo": "Consórcio Mycon",
+       "url": "/administradoras/mycon/"
+      },
+      {
+       "rotulo": "Consórcio Volkswagen",
+       "url": "/administradoras/volkswagen/"
+      },
+      {
+       "rotulo": "Consórcio Chevrolet",
+       "url": "/administradoras/chevrolet/"
+      },
+      {
+       "rotulo": "Consórcio Honda",
+       "url": "/administradoras/honda/"
+      }
+     ]
+    },
+    {
+     "titulo": "Imóveis por administradora",
+     "url": "/administradoras/",
+     "links": [
+      {
+       "rotulo": "Consórcio Itaú imóvel",
+       "url": "/administradoras/itau/imovel/"
+      },
+      {
+       "rotulo": "Consórcio Bradesco imóvel",
+       "url": "/administradoras/bradesco/imovel/"
+      },
+      {
+       "rotulo": "Consórcio Banco do Brasil imóvel",
+       "url": "/administradoras/banco-do-brasil/imovel/"
+      },
+      {
+       "rotulo": "Consórcio Caixa imóvel",
+       "url": "/administradoras/caixa/imovel/"
+      },
+      {
+       "rotulo": "Consórcio Santander imóvel",
+       "url": "/administradoras/santander/imovel/"
+      },
+      {
+       "rotulo": "Consórcio Sicredi imóvel",
+       "url": "/administradoras/sicredi/imovel/"
+      },
+      {
+       "rotulo": "Consórcio Sicoob imóvel",
+       "url": "/administradoras/sicoob/imovel/"
+      },
+      {
+       "rotulo": "Consórcio Ademicon imóvel",
+       "url": "/administradoras/ademicon/imovel/"
+      }
+     ]
+    },
+    {
+     "titulo": "Carros por administradora",
+     "url": "/administradoras/",
+     "links": [
+      {
+       "rotulo": "Consórcio Volkswagen carro",
+       "url": "/administradoras/volkswagen/carro/"
+      },
+      {
+       "rotulo": "Consórcio Chevrolet carro",
+       "url": "/administradoras/chevrolet/carro/"
+      },
+      {
+       "rotulo": "Consórcio Honda carro",
+       "url": "/administradoras/honda/carro/"
+      },
+      {
+       "rotulo": "Consórcio Itaú carro",
+       "url": "/administradoras/itau/carro/"
+      },
+      {
+       "rotulo": "Consórcio Bradesco carro",
+       "url": "/administradoras/bradesco/carro/"
+      },
+      {
+       "rotulo": "Consórcio Banco do Brasil carro",
+       "url": "/administradoras/banco-do-brasil/carro/"
+      },
+      {
+       "rotulo": "Consórcio Caixa carro",
+       "url": "/administradoras/caixa/carro/"
+      },
+      {
+       "rotulo": "Consórcio Santander carro",
+       "url": "/administradoras/santander/carro/"
+      }
+     ]
+    },
+    {
+     "titulo": "Motos por administradora",
+     "url": "/administradoras/",
+     "links": [
+      {
+       "rotulo": "Consórcio Honda moto",
+       "url": "/administradoras/honda/moto/"
+      },
+      {
+       "rotulo": "Consórcio Yamaha moto",
+       "url": "/administradoras/yamaha/moto/"
+      },
+      {
+       "rotulo": "Consórcio Itaú moto",
+       "url": "/administradoras/itau/moto/"
+      },
+      {
+       "rotulo": "Consórcio Bradesco moto",
+       "url": "/administradoras/bradesco/moto/"
+      },
+      {
+       "rotulo": "Consórcio Banco do Brasil moto",
+       "url": "/administradoras/banco-do-brasil/moto/"
+      },
+      {
+       "rotulo": "Consórcio Caixa moto",
+       "url": "/administradoras/caixa/moto/"
+      },
+      {
+       "rotulo": "Consórcio Santander moto",
+       "url": "/administradoras/santander/moto/"
+      },
+      {
+       "rotulo": "Consórcio Sicredi moto",
+       "url": "/administradoras/sicredi/moto/"
+      }
+     ]
+    },
+    {
+     "titulo": "Pesados e agro por administradora",
+     "url": "/administradoras/",
+     "links": [
+      {
+       "rotulo": "Consórcio Volkswagen caminhão",
+       "url": "/administradoras/volkswagen/caminhao/"
+      },
+      {
+       "rotulo": "Consórcio Mercedes-Benz caminhão",
+       "url": "/administradoras/mercedes-benz/caminhao/"
+      },
+      {
+       "rotulo": "Consórcio Mercedes-Benz ônibus",
+       "url": "/administradoras/mercedes-benz/onibus/"
+      },
+      {
+       "rotulo": "Consórcio Volvo caminhão",
+       "url": "/administradoras/volvo/caminhao/"
+      },
+      {
+       "rotulo": "Consórcio Volvo ônibus",
+       "url": "/administradoras/volvo/onibus/"
+      },
+      {
+       "rotulo": "Consórcio Scania caminhão",
+       "url": "/administradoras/scania/caminhao/"
+      },
+      {
+       "rotulo": "Consórcio Scania ônibus",
+       "url": "/administradoras/scania/onibus/"
+      },
+      {
+       "rotulo": "Consórcio Itaú caminhão",
+       "url": "/administradoras/itau/caminhao/"
+      }
+     ]
+    },
+    {
+     "titulo": "Serviços e bens por administradora",
+     "url": "/administradoras/",
+     "links": [
+      {
+       "rotulo": "Consórcio Itaú serviços",
+       "url": "/administradoras/itau/servicos/"
+      },
+      {
+       "rotulo": "Consórcio Bradesco serviços",
+       "url": "/administradoras/bradesco/servicos/"
+      },
+      {
+       "rotulo": "Consórcio Banco do Brasil serviços",
+       "url": "/administradoras/banco-do-brasil/servicos/"
+      },
+      {
+       "rotulo": "Consórcio Caixa serviços",
+       "url": "/administradoras/caixa/servicos/"
+      },
+      {
+       "rotulo": "Consórcio Santander serviços",
+       "url": "/administradoras/santander/servicos/"
+      },
+      {
+       "rotulo": "Consórcio Sicredi serviços",
+       "url": "/administradoras/sicredi/servicos/"
+      },
+      {
+       "rotulo": "Consórcio Sicoob serviços",
+       "url": "/administradoras/sicoob/servicos/"
+      },
+      {
+       "rotulo": "Consórcio Ademicon serviços",
+       "url": "/administradoras/ademicon/servicos/"
+      }
+     ]
+    },
+    {
+     "titulo": "Comparativos",
+     "url": "/administradoras/",
+     "links": [
+      {
+       "rotulo": "Melhor administradora de consórcio",
+       "url": "/administradoras/melhor-administradora-de-consorcio/"
+      },
+      {
+       "rotulo": "Maiores administradoras de consórcio",
+       "url": "/administradoras/maiores-administradoras-de-consorcio/"
+      },
+      {
+       "rotulo": "Administradoras de consórcio autorizadas pelo Banco Central",
+       "url": "/administradoras/administradoras-de-consorcio-autorizadas-pelo-banco-central/"
+      },
+      {
+       "rotulo": "Ranking de administradoras de consórcio",
+       "url": "/administradoras/ranking-de-administradoras-de-consorcio/"
+      },
+      {
+       "rotulo": "Reclamações de administradoras de consórcio",
+       "url": "/administradoras/reclamacoes-de-administradoras-de-consorcio/"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "rotulo": "Aprenda",
+   "url": "/guia-do-consorcio/",
+   "colunas": [
+    {
+     "titulo": "Guia do consórcio",
+     "url": "/guia-do-consorcio/",
+     "links": [
+      {
+       "rotulo": "O que é consórcio",
+       "url": "/guia-do-consorcio/o-que-e-consorcio/"
+      },
+      {
+       "rotulo": "Consórcio vale a pena",
+       "url": "/guia-do-consorcio/vale-a-pena/"
+      },
+      {
+       "rotulo": "Consórcio ou financiamento",
+       "url": "/guia-do-consorcio/ou-financiamento/"
+      },
+      {
+       "rotulo": "Consórcio ou aluguel",
+       "url": "/guia-do-consorcio/ou-aluguel/"
+      },
+      {
+       "rotulo": "Consórcio tem juros",
+       "url": "/guia-do-consorcio/tem-juros/"
+      },
+      {
+       "rotulo": "Taxa de administração do consórcio",
+       "url": "/guia-do-consorcio/taxa-de-administracao-do-consorcio/"
+      },
+      {
+       "rotulo": "Como funciona a contemplação",
+       "url": "/guia-do-consorcio/como-funciona-a-contemplacao/"
+      },
+      {
+       "rotulo": "Como ser contemplado rápido",
+       "url": "/guia-do-consorcio/como-ser-contemplado-rapido/"
+      }
+     ]
+    },
+    {
+     "titulo": "Ferramentas",
+     "url": "/ferramentas/",
+     "links": [
+      {
+       "rotulo": "Simulador de consórcio de imóvel",
+       "url": "/ferramentas/simulador-de-consorcio-de-imovel/"
+      },
+      {
+       "rotulo": "Simulador de consórcio de carro",
+       "url": "/ferramentas/simulador-de-consorcio-de-carro/"
+      },
+      {
+       "rotulo": "Calculadora aluguel ou consórcio",
+       "url": "/ferramentas/calculadora-aluguel-ou-consorcio/"
+      },
+      {
+       "rotulo": "Calculadora consórcio ou financiamento",
+       "url": "/ferramentas/calculadora-consorcio-ou-financiamento/"
+      },
+      {
+       "rotulo": "Calculadora de lance de consórcio",
+       "url": "/ferramentas/calculadora-de-lance-de-consorcio/"
+      },
+      {
+       "rotulo": "Simulador de consórcio de moto",
+       "url": "/ferramentas/simulador-de-consorcio-de-moto/"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "rotulo": "Como funciona",
+   "url": "/como-funciona/",
+   "colunas": [
+    {
+     "titulo": "Consultoria Turbo",
+     "url": "/como-funciona/",
+     "links": [
+      {
+       "rotulo": "Simulação de consórcio",
+       "url": "/consultoria/simulacao-de-consorcio/"
+      },
+      {
+       "rotulo": "Comparar administradoras de consórcio",
+       "url": "/consultoria/comparar-administradoras-de-consorcio/"
+      },
+      {
+       "rotulo": "Estratégia de lance de consórcio",
+       "url": "/consultoria/estrategia-de-lance-de-consorcio/"
+      },
+      {
+       "rotulo": "Comparar grupos de consórcio",
+       "url": "/consultoria/comparar-grupos-de-consorcio/"
+      },
+      {
+       "rotulo": "Análise de histórico de lances",
+       "url": "/consultoria/analise-de-historico-de-lances/"
+      },
+      {
+       "rotulo": "Gestão mensal de lances",
+       "url": "/consultoria/gestao-mensal-de-lances/"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "rodape": [
+  {
+   "titulo": "Institucional",
+   "url": null,
+   "links": [
+    {
+     "rotulo": "Sobre a Turbo",
+     "url": "/sobre/"
+    },
+    {
+     "rotulo": "Como funciona",
+     "url": "/como-funciona/"
+    },
+    {
+     "rotulo": "Depoimentos",
+     "url": "/depoimentos/"
+    },
+    {
+     "rotulo": "Contato",
+     "url": "/contato/"
+    }
+   ]
+  },
+  {
+   "titulo": "Soluções",
+   "url": null,
+   "links": [
+    {
+     "rotulo": "Imóveis",
+     "url": "/consorcio-de-imoveis/"
+    },
+    {
+     "rotulo": "Carros",
+     "url": "/consorcio-de-carros/"
+    },
+    {
+     "rotulo": "Motos",
+     "url": "/consorcio-de-motos/"
+    },
+    {
+     "rotulo": "Pesados",
+     "url": "/consorcio-de-pesados/"
+    },
+    {
+     "rotulo": "Máquinas e Agro",
+     "url": "/consorcio-de-maquinas/"
+    },
+    {
+     "rotulo": "Serviços",
+     "url": "/consorcio-de-servicos/"
+    },
+    {
+     "rotulo": "Bens",
+     "url": "/consorcio-de-bens/"
+    }
+   ]
+  },
+  {
+   "titulo": "Onde atendemos",
+   "url": null,
+   "links": [
+    {
+     "rotulo": "Consórcio de imóvel em São Paulo",
+     "url": "/consorcio-de-imoveis/sao-paulo/"
+    },
+    {
+     "rotulo": "Consórcio de imóvel em Rio de Janeiro",
+     "url": "/consorcio-de-imoveis/rio-de-janeiro/"
+    },
+    {
+     "rotulo": "Consórcio de imóvel em Belo Horizonte",
+     "url": "/consorcio-de-imoveis/belo-horizonte/"
+    },
+    {
+     "rotulo": "Consórcio de imóvel em Brasília",
+     "url": "/consorcio-de-imoveis/brasilia/"
+    },
+    {
+     "rotulo": "Consórcio de imóvel em Curitiba",
+     "url": "/consorcio-de-imoveis/curitiba/"
+    }
+   ]
+  },
+  {
+   "titulo": "Seguros",
+   "url": "/seguros/",
+   "links": [
+    {
+     "rotulo": "Seguro prestamista",
+     "url": "/seguros/seguro-prestamista/"
+    },
+    {
+     "rotulo": "Seguro de vida",
+     "url": "/seguros/seguro-de-vida/"
+    },
+    {
+     "rotulo": "Seguro residencial",
+     "url": "/seguros/seguro-residencial/"
+    },
+    {
+     "rotulo": "Seguro auto",
+     "url": "/seguros/seguro-auto/"
+    },
+    {
+     "rotulo": "Seguro de moto",
+     "url": "/seguros/seguro-de-moto/"
+    },
+    {
+     "rotulo": "Seguro de caminhão",
+     "url": "/seguros/seguro-de-caminhao/"
+    }
+   ]
+  },
+  {
+   "titulo": "Parceiros",
+   "url": "/parceiros/",
+   "links": [
+    {
+     "rotulo": "Parceria com imobiliárias",
+     "url": "/parceiros/parceria-com-imobiliarias/"
+    },
+    {
+     "rotulo": "Parceria com corretores de imóveis",
+     "url": "/parceiros/parceria-com-corretores-de-imoveis/"
+    },
+    {
+     "rotulo": "Parceria com contadores",
+     "url": "/parceiros/parceria-com-contadores/"
+    },
+    {
+     "rotulo": "Programa de afiliados de consórcio",
+     "url": "/parceiros/programa-de-afiliados-de-consorcio/"
+    },
+    {
+     "rotulo": "Seja representante de consórcio",
+     "url": "/parceiros/seja-representante-de-consorcio/"
+    },
+    {
+     "rotulo": "Parceria com construtoras",
+     "url": "/parceiros/parceria-com-construtoras/"
+    }
+   ]
+  },
+  {
+   "titulo": "Segurança e legal",
+   "url": null,
+   "links": [
+    {
+     "rotulo": "Como identificar golpes",
+     "url": "/seguranca/"
+    },
+    {
+     "rotulo": "Consulta de administradoras no Banco Central",
+     "url": "/guia-do-consorcio/como-consultar-administradora-no-banco-central/"
+    },
+    {
+     "rotulo": "Política de privacidade",
+     "url": "/politica-de-privacidade/"
+    },
+    {
+     "rotulo": "Termos de uso",
+     "url": "/termos-de-uso/"
+    }
+   ]
+  }
+ ],
+ "destaque": {
+  "rotulo": "Simular agora",
+  "url": "/ferramentas/"
+ }
+}

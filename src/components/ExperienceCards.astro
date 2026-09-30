@@ -1,0 +1,39 @@
+---
+/* experience-one: seção escura, título à esquerda e cards que sobem e "enchem" de laranja no hover */
+import Icon from './Icon.astro';
+import SectionTitle from './SectionTitle.astro';
+import type { Item } from '../data/conteudo';
+
+interface Props {
+  tagline: string;
+  titulo: string;
+  itens: Item[];
+}
+const { tagline, titulo, itens } = Astro.props;
+---
+
+<section class="relative bg-ink pt-[80px] pb-[50px] lg:pt-[120px] lg:pb-[90px] overflow-hidden">
+  <div
+    class="absolute inset-y-5 inset-x-0 opacity-[0.06] bg-[radial-gradient(circle_at_1px_1px,#fff_1px,transparent_0)] bg-[length:22px_22px]"
+    aria-hidden="true"
+  >
+  </div>
+  <div class="relative container-x grid gap-x-[30px] lg:grid-cols-[1fr_2fr] items-center">
+    <SectionTitle tagline={tagline} titulo={titulo} claro class="lg:mb-[30px]" />
+    <ul class="grid gap-x-[30px] md:grid-cols-3">
+      {
+        itens.map((it) => (
+          <li class="group relative isolate flex flex-col gap-4 bg-ink-800 rounded-[6px] px-6 py-[26px] mb-[30px] transition-transform duration-500 hover:-translate-y-2.5 before:absolute before:inset-0 before:-z-10 before:rounded-[6px] before:bg-brand before:scale-x-0 before:transition-transform before:duration-400 hover:before:scale-x-100">
+            <span class="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center text-brand-300 transition-colors group-hover:bg-white group-hover:text-brand">
+              <Icon name={it.icone} class="w-7 h-7" />
+            </span>
+            <div>
+              <h3 class="font-heading text-white text-[20px] leading-[30px] font-semibold mb-2">{it.titulo}</h3>
+              <p class="text-white/75 text-[15px] leading-[26px] group-hover:text-white">{it.texto}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

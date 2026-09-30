@@ -1,0 +1,57 @@
+---
+/* skill-one: seção navy, texto e barras de progresso à esquerda, foto à direita */
+import SectionTitle from './SectionTitle.astro';
+import Icon from './Icon.astro';
+import { comparativo, vantagens } from '../data/conteudo';
+---
+
+<section class="section-y bg-ink">
+  <div class="container-x grid gap-14 lg:grid-cols-2 items-center">
+    <div class="lg:mr-[60px]">
+      <SectionTitle tagline="Consórcio x Financiamento" titulo="Por que o consórcio sai mais barato" claro class="!mb-6" />
+      <p class="text-white/70">
+        No consórcio não existem juros bancários: você paga apenas a taxa de administração, diluída ao longo do prazo. Com a
+        carta de crédito em mãos, compra à vista e negocia desconto.
+      </p>
+      <ul class="mt-9 space-y-6">
+        {
+          comparativo.map((c) => (
+            <li>
+              <div class="flex justify-between text-white text-[14px] font-bold leading-[30px]">
+                <span>{c.rotulo}</span>
+                <span>{c.valor}%</span>
+              </div>
+              <div class="h-[10px] rounded-full bg-white/10 overflow-hidden" role="progressbar" aria-valuenow={c.valor} aria-valuemin="0" aria-valuemax="100" aria-label={c.rotulo}>
+                <div class="h-full rounded-full bg-brand" style={`width:${c.valor}%`} />
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+      <ul class="mt-10 grid sm:grid-cols-2 gap-x-6 gap-y-2.5">
+        {
+          vantagens.map((v) => (
+            <li class="flex gap-3 text-white/80 text-[15px] leading-6">
+              <Icon name="check" class="w-5 h-5 shrink-0 text-brand-300" />
+              {v}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div class="relative lg:ml-10">
+      <div class="rounded-[7px] overflow-hidden bg-brand">
+        <img src="/images/handshake-750.webp" alt="Aperto de mão após a contratação de um consórcio" class="w-full h-[380px] lg:h-[520px] object-cover mix-blend-multiply opacity-90" loading="lazy" />
+      </div>
+      <div class="absolute -bottom-8 left-6 sm:-left-8 bg-white rounded-[6px] shadow-card px-7 py-5 flex items-center gap-4">
+        <span class="w-14 h-14 rounded-full bg-brand text-white flex items-center justify-center shrink-0">
+          <Icon name="piggy" class="w-7 h-7" />
+        </span>
+        <span>
+          <span class="block font-heading text-ink text-[30px] leading-9 font-bold">R$ 0</span>
+          <span class="block text-[14px] leading-5">de juros bancários</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>

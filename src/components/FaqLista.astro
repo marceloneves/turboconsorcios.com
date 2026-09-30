@@ -1,42 +1,49 @@
 ---
+/* Bloco de FAQ (faq-one-accrodion, versão clara) com respostas de respostas.ts */
 import Icon from './Icon.astro';
-import type { Pergunta } from '../data/faq';
+import SectionTitle from './SectionTitle.astro';
+import { respostasFaq } from '../data/respostas';
 
 interface Props {
-  perguntas: Pergunta[];
-  titulo?: string;
-  label?: string;
+  perguntas: string[];
+  schema?: boolean;
 }
-const { perguntas, titulo = 'Perguntas Frequentes Sobre Consórcio', label = 'Tire Suas Dúvidas' } = Astro.props;
+const { perguntas, schema = true } = Astro.props;
+const itens = perguntas.filter((q) => respostasFaq[q]).map((q) => ({ pergunta: q, resposta: respostasFaq[q] }));
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: itens.map((f) => ({
+    '@type': 'Question',
+    name: f.pergunta,
+    acceptedAnswer: { '@type': 'Answer', text: f.resposta },
+  })),
+};
 ---
 
-<section class="py-24 md:py-32 bg-white" id="faq">
-  <div class="max-w-3xl mx-auto px-6">
-    <div class="text-center mb-16">
-      <p class="section-label">{label}</p>
-      <h2 class="font-heading font-bold text-3xl md:text-4xl text-primary-900">{titulo}</h2>
-    </div>
-    <div class="divide-y divide-primary-100 border-y border-primary-100">
-      {
-        perguntas.map((f, i) => (
-          <details class="group" open={i === 0}>
-            <summary class="flex items-center justify-between gap-6 py-6 cursor-pointer list-none">
-              <h3 class="font-heading font-semibold text-lg text-primary-900">{f.pergunta}</h3>
-              <Icon
-                name="chevronDown"
-                class="w-5 h-5 text-accent shrink-0 transition-transform duration-300 group-open:rotate-180"
-              />
-            </summary>
-            <p class="text-primary-700 leading-relaxed pb-6 pr-10">{f.resposta}</p>
-          </details>
-        ))
-      }
-    </div>
-  </div>
-</section>
-
-<style>
-  details > summary::-webkit-details-marker {
-    display: none;
-  }
-</style>
+{
+  itens.length > 0 && (
+    <section class="section-y bg-soft" id="faq">
+      <div class="container-x max-w-[900px]">
+        <SectionTitle tagline="Perguntas Frequentes" titulo="Dúvidas comuns" centro />
+        <div class="space-y-4">
+          {itens.map((f, i) => (
+            <details class="accordion group rounded-[4px] bg-white shadow-card border border-transparent open:border-brand/50" open={i === 0} name="faq">
+              <summary class="flex items-center justify-between gap-5 px-[25px] py-[16px]">
+                <h3 class="font-body text-ink text-[18px] leading-[28px] font-bold">{f.pergunta}</h3>
+                <span class="accordion-icon w-8 h-8 shrink-0 rounded bg-brand text-white flex items-center justify-center">
+                  <Icon name="plus" class="w-4 h-4" />
+                </span>
+              </summary>
+              <div class="px-[25px] pb-[22px] -mt-1">
+                <p class="border-t border-line pt-4 text-[15px] leading-[27px]">{f.resposta}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+      {schema && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+    </section>
+  )
+}

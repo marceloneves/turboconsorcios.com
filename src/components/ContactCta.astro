@@ -1,0 +1,93 @@
+---
+/* contact-one: foto escurecida ao fundo, título e contatos à esquerda, formulário de simulação (WhatsApp) à direita */
+import Icon from './Icon.astro';
+import SectionTitle from './SectionTitle.astro';
+import { site, whatsappUrl } from '../data/site';
+import { consorciosDestaque } from '../data/consorcios';
+
+interface Props {
+  titulo?: string;
+  texto?: string;
+  cta?: string;
+}
+const {
+  titulo = 'Peça sua simulação gratuita',
+  texto = 'Conte o seu objetivo e a parcela que cabe no seu orçamento. Devolvemos um comparativo real entre administradoras, sem compromisso.',
+  cta = 'Enviar e Simular Grátis',
+} = Astro.props;
+
+const campo =
+  'w-full h-[60px] rounded-[4px] bg-white/10 border border-white/15 text-white placeholder-white/50 px-5 text-[15px] focus:outline-none focus:border-brand';
+---
+
+<section class="relative isolate section-y bg-ink-950 overflow-hidden" id="simular">
+  <img src="/images/consultation.webp" alt="" aria-hidden="true" class="absolute inset-0 -z-10 w-full h-full object-cover opacity-20" loading="lazy" />
+  <div class="absolute inset-0 -z-10 bg-gradient-to-r from-ink-950 via-ink-950/90 to-ink-950/60" aria-hidden="true"></div>
+  <div class="container-x grid gap-14 lg:grid-cols-[5fr_7fr] items-center">
+    <div>
+      <SectionTitle tagline="Fale Conosco" titulo={titulo} claro class="!mb-6" />
+      <p class="text-white/75">{texto}</p>
+      <ul class="mt-9 space-y-5">
+        <li class="flex items-center gap-4">
+          <span class="w-14 h-14 rounded-full bg-brand text-white flex items-center justify-center shrink-0">
+            <Icon name="phone" class="w-6 h-6" />
+          </span>
+          <span>
+            <span class="block text-white/60 text-[14px] leading-5">Ligue agora</span>
+            <a href={site.telefoneLink} class="font-heading text-white text-[22px] font-semibold hover:text-brand-300">{site.telefone}</a>
+          </span>
+        </li>
+        <li class="flex items-center gap-4">
+          <span class="w-14 h-14 rounded-full bg-white/10 text-brand-300 flex items-center justify-center shrink-0">
+            <Icon name="lock" class="w-6 h-6" />
+          </span>
+          <span class="text-white/70 text-[15px] leading-6">Dados tratados conforme a LGPD. Sem ligações insistentes.</span>
+        </li>
+      </ul>
+    </div>
+    <div class="bg-white/5 border border-white/10 rounded-[8px] p-7 md:p-10 backdrop-blur-sm">
+      <form id="form-simulacao" class="grid gap-5 sm:grid-cols-2" data-whatsapp={whatsappUrl}>
+        <div>
+          <label for="sim-nome" class="sr-only">Nome completo</label>
+          <input id="sim-nome" name="nome" type="text" required autocomplete="name" placeholder="Seu nome" class={campo} />
+        </div>
+        <div>
+          <label for="sim-tel" class="sr-only">WhatsApp</label>
+          <input id="sim-tel" name="telefone" type="tel" required autocomplete="tel" placeholder="WhatsApp com DDD" class={campo} />
+        </div>
+        <div>
+          <label for="sim-mod" class="sr-only">O que você quer conquistar</label>
+          <select id="sim-mod" name="modalidade" class:list={[campo, 'appearance-none']}>
+            {consorciosDestaque.map((c) => <option class="text-ink" value={c.nome}>{c.nome}</option>)}
+          </select>
+        </div>
+        <div>
+          <label for="sim-valor" class="sr-only">Valor aproximado do crédito</label>
+          <input id="sim-valor" name="valor" type="text" inputmode="numeric" placeholder="Crédito desejado (ex.: R$ 200.000)" class={campo} />
+        </div>
+        <div class="sm:col-span-2 flex flex-wrap items-center gap-5">
+          <button type="submit" class="thm-btn">{cta} <Icon name="whatsapp" class="w-5 h-5" /></button>
+          <p class="text-[13px] leading-5 text-white/60">Ao enviar, você é direcionado ao WhatsApp com os dados preenchidos.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('form-simulacao') as HTMLFormElement | null;
+  form?.addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    if (!form.reportValidity()) return;
+    const d = new FormData(form);
+    const texto = [
+      'Olá! Quero uma simulação de consórcio.',
+      `Nome: ${d.get('nome') || ''}`,
+      `WhatsApp: ${d.get('telefone') || ''}`,
+      `Modalidade: ${d.get('modalidade') || ''}`,
+      `Crédito desejado: ${d.get('valor') || ''}`,
+    ].join('\n');
+    const base = (form.dataset.whatsapp || '').split('&text=')[0];
+    window.open(`${base}&text=${encodeURIComponent(texto)}`, '_blank', 'noopener');
+  });
+</script>
