@@ -48,7 +48,16 @@ const ativo = (g: (typeof menuPrincipal)[number]) =>
       <Logo />
 
       <nav class="hidden xl:block" aria-label="Principal">
-        <ul class="flex items-center gap-6">
+        <ul class="flex items-center gap-5">
+          <li>
+            <a
+              href="/"
+              class:list={[
+                'block py-[34px] whitespace-nowrap font-heading text-[15px] font-semibold transition-colors',
+                path === '/' ? 'text-brand' : 'text-ink hover:text-brand',
+              ]}>Início</a
+            >
+          </li>
           {
             menuPrincipal.map((g) => (
               <li class="group">
@@ -121,6 +130,9 @@ const ativo = (g: (typeof menuPrincipal)[number]) =>
         </button>
       </div>
       <ul class="divide-y divide-white/10 border-y border-white/10">
+        <li>
+          <a href="/" class="block py-3 font-heading text-[15px] font-semibold text-white hover:text-brand-300">Início</a>
+        </li>
         {
           menuPrincipal.map((g) => (
             <li>
