@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import HeroSlider from '../components/HeroSlider.astro';
+import Hero from '../components/Hero.astro';
 import ExperienceCards from '../components/ExperienceCards.astro';
 import AboutSplit from '../components/AboutSplit.astro';
 import SectionTitle from '../components/SectionTitle.astro';
@@ -15,41 +15,20 @@ import { site } from '../data/site';
 import { consorciosDestaque } from '../data/consorcios';
 import { diferenciais, incluido, passos } from '../data/conteudo';
 import { faq } from '../data/faq';
-
-const slides = [
-  {
-    imagem: '/images/hero.webp',
-    srcset: '/images/hero-750.webp 750w, /images/hero-1200.webp 1200w, /images/hero.webp 1880w',
-    tagline: 'A Nº1 em Consórcios do Brasil',
-    titulo: 'Consórcio Sem Juros e Sem Entrada em Todo o Brasil',
-    texto:
-      'Imóveis, veículos, motos, caminhões, máquinas agrícolas e serviços. Presente em todas as 5.570 cidades brasileiras com 37 administradoras parceiras.',
-    cta: 'Simule Gratuitamente',
-  },
-  {
-    imagem: '/images/family-home.webp',
-    srcset: '/images/family-home-750.webp 750w, /images/family-home-1200.webp 1200w, /images/family-home.webp 1880w',
-    tagline: 'Consórcio de Imóveis',
-    titulo: 'A Casa Própria Sem Pagar Juros ao Banco',
-    texto: 'Cartas de crédito de R$ 80 mil a R$ 1,5 milhão. Use o FGTS como lance para antecipar a contemplação.',
-    cta: 'Simular Imóvel',
-  },
-  {
-    imagem: '/images/cars.webp',
-    srcset: '/images/cars-750.webp 750w, /images/cars.webp 1880w',
-    tagline: 'Consórcio de Veículos',
-    titulo: 'Carro Novo com Poder de Compra à Vista',
-    texto: 'Cartas de R$ 30 mil a R$ 350 mil para zero ou seminovo de qualquer marca, com parcelas até 50% menores.',
-    cta: 'Simular Veículo',
-  },
-];
 ---
 
 <BaseLayout
   title="Consórcio Sem Juros e Sem Entrada. Simule Grátis Agora | Turbo Consórcios"
   description="Consórcio de imóveis, veículos, motos, caminhões, máquinas agrícolas e serviços. Sem juros bancários, sem entrada obrigatória. 37 administradoras parceiras em todo o Brasil."
 >
-  <HeroSlider slides={slides} />
+  <Hero
+    imagem="/images/hero.webp"
+    srcset="/images/hero-750.webp 750w, /images/hero-1200.webp 1200w, /images/hero.webp 1880w"
+    tagline="A Nº1 em Consórcios do Brasil"
+    titulo="Consórcio Sem Juros e Sem Entrada em Todo o Brasil"
+    texto="Imóveis, veículos, motos, caminhões, máquinas agrícolas e serviços. Presente em todas as 5.570 cidades brasileiras com 37 administradoras parceiras."
+    cta="Simule Gratuitamente"
+  />
 
   <ExperienceCards tagline="Por que a Turbo" titulo="Mais de 15 anos comparando o mercado de consórcios" itens={diferenciais} />
 

@@ -1,0 +1,39 @@
+---
+/* Hero da home (main-slider do Fixnix, sem animações): foto ao fundo, uma headline e CTAs */
+import Icon from './Icon.astro';
+import { whatsappUrl } from '../data/site';
+
+interface Props {
+  imagem: string;
+  srcset?: string;
+  tagline: string;
+  titulo: string;
+  texto: string;
+  cta: string;
+}
+const { imagem, srcset, tagline, titulo, texto, cta } = Astro.props;
+---
+
+<section class="relative isolate bg-ink overflow-hidden">
+  <div class="absolute inset-0 -z-10 bg-ink">
+    <img src={imagem} srcset={srcset} sizes="100vw" alt="" class="w-full h-full object-cover" loading="eager" fetchpriority="high" />
+    <div class="absolute inset-0 bg-gradient-to-r from-ink-950/90 via-ink/60 to-ink/10"></div>
+  </div>
+  <div class="container-x min-h-[620px] lg:min-h-[760px] flex items-center py-28">
+    <div class="max-w-[720px]">
+      <p class="inline-flex items-center gap-3 font-heading text-[16px] md:text-[18px] font-semibold uppercase tracking-[0.08em] text-brand-300">
+        <span class="w-10 h-[2px] bg-brand-300" aria-hidden="true"></span>
+        {tagline}
+      </p>
+      <h1 class="mt-5 font-heading text-white font-bold text-[40px] leading-[48px] md:text-[65px] md:leading-[75px]">{titulo}</h1>
+      <p class="mt-6 text-white/85 text-[18px] leading-[30px] md:text-[20px] max-w-[600px]">{texto}</p>
+      <div class="mt-10 flex flex-wrap gap-4">
+        <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="thm-btn">
+          {cta}
+          <Icon name="arrowRight" class="w-4 h-4" />
+        </a>
+        <a href="#consorcios" class="thm-btn thm-btn-light">Ver Consórcios</a>
+      </div>
+    </div>
+  </div>
+</section>
